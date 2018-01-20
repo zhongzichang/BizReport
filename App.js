@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * BizReportApp
+ * https://github.com/zhongzichang/BizReport
  * @flow
  */
 
@@ -12,37 +12,24 @@ import {
   View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-class HomeScreen extends Component<{}> {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
-}
+import HomeScreen from './components/HomeScreen';
+import PerformanceScreen from './components/PerformanceScreen';
+import StockScreen from './components/StockScreen';
+import SalesScreen from './components/SalesScreen';
+import MemberScreen from './components/MemberScreen';
+import GuideScreen from './components/GuideScreen';
+import ActivityScreen from './components/ActivityScreen';
+import FinanceScreen from './components/FinanceScreen';
 
 const BizReportApp = StackNavigator({
   Home: { screen: HomeScreen },
+  Performance: { screen: PerformanceScreen },
+  Stock: { screen: StockScreen },
+  Sales: { screen: SalesScreen },
+  Member: { screen: MemberScreen },
+  Guide: { screen: GuideScreen },
+  Activity: { screen: ActivityScreen },
+  Finance: { screen: FinanceScreen }
 });
 
 export default class App extends React.Component {
@@ -50,22 +37,3 @@ export default class App extends React.Component {
     return <BizReportApp />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
