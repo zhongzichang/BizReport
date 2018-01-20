@@ -32,19 +32,21 @@ class PerformanceScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center',borderWidth:1,borderColor:'#f0f' }}>
+      <View style={{ flex: 1, flexDirection: 'column',alignItems: 'flex-start', justifyContent: 'center',borderWidth:1,borderColor:'#f0f' }}>
+
         <FlatList
           style={{borderWidth:1,borderColor:'#f0f',}}
           data={this.state.data}
           renderItem={({item}) =>
-          <View style={{flexDirection: 'row',justifyContent:'space-around',borderWidth:1,borderColor:'#f0f'}}>
-          <Text>{item.c1}</Text>
-          <Text>{item.c2}</Text>
-          <Text>{item.c3}</Text>
-          <Text>{item.c4}</Text>
-          <Text>{item.c5}</Text>
-          </View>}
+            <View style={{flexDirection: 'row',justifyContent:'space-around',borderWidth:1,borderColor:'#f0f'}}>
+              <Text>{item.c1}</Text>
+              <Text>{item.c2}</Text>
+              <Text>{item.c3}</Text>
+              <Text>{item.c4}</Text>
+              <Text>{item.c5}</Text>
+            </View>}
         />
+
         <View style={{flexDirection:'row',flexWrap:'wrap'}}>
           <Button
             onPress={() => navigate('Stock')}
@@ -71,6 +73,7 @@ class PerformanceScreen extends React.Component {
             title="财务"
           />
         </View>
+
       </View>
     );
   }
