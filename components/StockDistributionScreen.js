@@ -13,7 +13,7 @@ class StockDistributionScreen extends React.Component {
     super();
     this.state = {
       data: [
-        {key:'r1',c1:'',c2:'今天',c3:'昨天',c4:'本周',c5:'本月'},
+        {key:'r1',c1:'颜色',c2:'店铺',c3:'S',c4:'M',c5:'L'},
         {key:'r2',c1:'业绩',c2:'',c3:'',c4:'',c5:''},
         {key:'r3',c1:'目标',c2:'',c3:'',c4:'',c5:''},
         {key:'r4',c1:'完成率',c2:'',c3:'',c4:'',c5:''},
