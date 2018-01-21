@@ -32,7 +32,7 @@ class PerformanceScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1, flexDirection: 'column',alignItems: 'flex-start', justifyContent: 'center',borderWidth:1,borderColor:'#f0f' }}>
+      <View style={{ borderWidth:1,borderColor:'#f0f' }}>
 
         <FlatList
           style={{borderWidth:1,borderColor:'#f0f',}}

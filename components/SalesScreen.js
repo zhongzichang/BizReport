@@ -39,6 +39,7 @@ class SalesScreen extends React.Component {
       </View>
     );
   }
+  
 }
 
 export default SalesScreen;
