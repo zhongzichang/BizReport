@@ -20,6 +20,7 @@ import MemberScreen from './components/MemberScreen';
 import GuideScreen from './components/GuideScreen';
 import ActivityScreen from './components/ActivityScreen';
 import FinanceScreen from './components/FinanceScreen';
+import StockDistributionScreen from './components/StockDistributionScreen';
 
 const BizReportApp = StackNavigator({
   Home: { screen: HomeScreen },
@@ -29,7 +30,8 @@ const BizReportApp = StackNavigator({
   Member: { screen: MemberScreen },
   Guide: { screen: GuideScreen },
   Activity: { screen: ActivityScreen },
-  Finance: { screen: FinanceScreen }
+  Finance: { screen: FinanceScreen },
+  StockDistribution: { screen: StockDistributionScreen },
 });
 
 export default class App extends React.Component {
