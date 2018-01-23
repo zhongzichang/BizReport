@@ -31,12 +31,14 @@ class PerformanceScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const performance = this.props.performance;
     return (
       <View style={{ borderWidth:1,borderColor:'#f0f' }}>
 
+        { performance != null && performance.length > 0 &&
         <FlatList
           style={{borderWidth:1,borderColor:'#f0f',}}
-          data={this.state.data}
+          data={performance}
           renderItem={({item}) =>
             <View style={{flexDirection: 'row',justifyContent:'space-around',borderWidth:1,borderColor:'#f0f'}}>
               <Text>{item.c1}</Text>
@@ -46,6 +48,7 @@ class PerformanceScreen extends React.Component {
               <Text>{item.c5}</Text>
             </View>}
         />
+        }
 
         <View style={{flexDirection:'row',flexWrap:'wrap'}}>
           <Button

@@ -14,6 +14,9 @@
     "react-native-material-kit": "^0.5.1",
     "react-native-svg": "^6.0.1-rc.3",
     "react-navigation": "^1.0.0-beta.27",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "victory-native": "^0.16.6"
   },
   "devDependencies": {
