@@ -1,7 +1,6 @@
-const API_KEY = 'YOUR API KEY';
 
-const URL_PREFIX = 'https://api.darksky.net/forecast/';
+const URL_PREFIX = 'http://39.106.149.147/biz-report';
 
 export default {
-  API_URL_PERFORMANCE: `${URL_PREFIX}${API_KEY}/40.680925,-73.974663`,
+  API_URL_PERFORMANCE: `${URL_PREFIX}/performance.json`,
 };

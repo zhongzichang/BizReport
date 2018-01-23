@@ -1,46 +1,57 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
 
+type Props = {
+  error : boolean,
+  isLoading : boolean,
+  weatherInfo : Object,
+  fetchData : Function,
+}
+
 class PerformanceScreen extends React.Component {
 
   static navigationOptions = {
     title: '业绩'
   };
 
-  //const rowHeaders = ['业绩','目标','完成率','连带','折扣','毛利率'];
-
-  constructor() {
-    super();
-    this.state = {
-      data: [
-        {key:'r1',c1:'',c2:'今天',c3:'昨天',c4:'本周',c5:'本月'},
-        {key:'r2',c1:'业绩',c2:'',c3:'',c4:'',c5:''},
-        {key:'r3',c1:'目标',c2:'',c3:'',c4:'',c5:''},
-        {key:'r4',c1:'完成率',c2:'',c3:'',c4:'',c5:''},
-        {key:'r5',c1:'连带',c2:'',c3:'',c4:'',c5:''},
-        {key:'r6',c1:'折扣',c2:'',c3:'',c4:'',c5:''},
-        {key:'r7',c1:'毛利率',c2:'',c3:'',c4:'',c5:''}
-      ]
-    };
+  constructor(props) {
+    super(props);
   }
 
   componentWillUnmount() {
 
   }
 
+  componentDidMount(){
+    this.props.fetchData();
+  }
+
+  componentWillUnmount() {
+  }
 
   render() {
+
     const { navigate } = this.props.navigation;
-    const performance = this.props.performance;
+
+    const {
+      isLoading,
+      error,
+      fetchData,
+      performanceInfo,
+    } = this.props;
+
+    const hasPerformanceData = Object.keys(performanceInfo).length;
+
     return (
+
       <View style={{ borderWidth:1,borderColor:'#f0f' }}>
 
-        { performance != null && performance.length > 0 &&
         <FlatList
           style={{borderWidth:1,borderColor:'#f0f',}}
-          data={performance}
+          data={performanceInfo}
           renderItem={({item}) =>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',borderWidth:1,borderColor:'#f0f'}}>
+            <View style={{flexDirection: 'row',justifyContent:'space-around',
+            borderWidth:1,borderColor:'#f0f'}}>
               <Text>{item.c1}</Text>
               <Text>{item.c2}</Text>
               <Text>{item.c3}</Text>
@@ -48,7 +59,6 @@ class PerformanceScreen extends React.Component {
               <Text>{item.c5}</Text>
             </View>}
         />
-        }
 
         <View style={{flexDirection:'row',flexWrap:'wrap'}}>
           <Button

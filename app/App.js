@@ -28,7 +28,7 @@ import PerformanceContainer from './containers/performance-container';
 
 const BizReportApp = StackNavigator({
   Home: { screen: HomeScreen },
-  Performance: { screen: PerformanceScreen },
+  Performance: { screen: PerformanceContainer },
   Stock: { screen: StockScreen },
   Sales: { screen: SalesScreen },
   Member: { screen: MemberScreen },
