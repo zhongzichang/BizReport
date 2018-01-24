@@ -1082,7 +1082,7 @@ clone-stats@^0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.taobao.org/clone-stats/download/clone-stats-0.0.1.tgz#b88f94a82cf38b8791d58046ea4029ad88ca99d1"
 
-clone@^1.0.0:
+clone@^1.0.0, clone@^1.0.2:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/clone/download/clone-1.0.3.tgz#298d7e2231660f40c003c2ed3140decf3f53085f"
 
@@ -1094,7 +1094,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-color-convert@^1.9.0, color-convert@^1.9.1:
+color-convert@^1.3.0, color-convert@^1.9.0:
   version "1.9.1"
   resolved "http://registry.npm.taobao.org/color-convert/download/color-convert-1.9.1.tgz#c1261107aeb2f294ebffec9ed9ecad529a6097ed"
   dependencies:
@@ -1104,23 +1104,23 @@ color-name@^1.0.0, color-name@^1.1.1:
   version "1.1.3"
   resolved "http://registry.npm.taobao.org/color-name/download/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
 
-color-string@^1.5.2:
-  version "1.5.2"
-  resolved "http://registry.npm.taobao.org/color-string/download/color-string-1.5.2.tgz#26e45814bc3c9a7cbd6751648a41434514a773a9"
+color-string@^0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/color-string/download/color-string-0.3.0.tgz#27d46fb67025c5c2fa25993bfbf579e47841b991"
   dependencies:
     color-name "^1.0.0"
-    simple-swizzle "^0.2.2"
 
 color-support@^1.1.3:
   version "1.1.3"
   resolved "http://registry.npm.taobao.org/color-support/download/color-support-1.1.3.tgz#93834379a1cc9a0c61f82f52f0d04322251bd5a2"
 
-color@^2.0.1:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/color/download/color-2.0.1.tgz#e4ed78a3c4603d0891eba5430b04b86314f4c839"
+color@^0.11.1:
+  version "0.11.4"
+  resolved "http://registry.npm.taobao.org/color/download/color-0.11.4.tgz#6d7b5c74fb65e841cd48792ad1ed5e07b904d764"
   dependencies:
-    color-convert "^1.9.1"
-    color-string "^1.5.2"
+    clone "^1.0.2"
+    color-convert "^1.3.0"
+    color-string "^0.3.0"
 
 combined-stream@^1.0.5, combined-stream@~1.0.5:
   version "1.0.5"
@@ -2212,10 +2212,6 @@ invert-kv@^1.0.0:
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "http://registry.npm.taobao.org/is-arrayish/download/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
-
-is-arrayish@^0.3.1:
-  version "0.3.1"
-  resolved "http://registry.npm.taobao.org/is-arrayish/download/is-arrayish-0.3.1.tgz#c2dfc386abaa0c3e33c48db3fe87059e69065efd"
 
 is-buffer@^1.1.5:
   version "1.1.6"
@@ -3697,13 +3693,12 @@ react-native-material-kit@^0.5.1:
     prop-types "^15.5.10"
     ramda "^0.24.1"
 
-react-native-svg@^6.0.1-rc.3:
-  version "6.0.1-rc.3"
-  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-6.0.1-rc.3.tgz#9a54b6f70d350ee5f0169b3023ec6221254177fd"
+react-native-svg@5.5.1:
+  version "5.5.1"
+  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-5.5.1.tgz#633d882077f048f05c721ebb793cd073e846ba1f"
   dependencies:
-    color "^2.0.1"
+    color "^0.11.1"
     lodash "^4.16.6"
-    pegjs "^0.10.0"
 
 react-native-tab-view@^0.0.74:
   version "0.0.74"
@@ -4227,12 +4222,6 @@ simple-plist@^0.2.1:
     bplist-parser "0.1.1"
     plist "2.0.1"
 
-simple-swizzle@^0.2.2:
-  version "0.2.2"
-  resolved "http://registry.npm.taobao.org/simple-swizzle/download/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
-  dependencies:
-    is-arrayish "^0.3.1"
-
 slash@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/slash/download/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -4667,17 +4656,17 @@ vhost@~3.0.1:
   version "3.0.2"
   resolved "http://registry.npm.taobao.org/vhost/download/vhost-3.0.2.tgz#2fb1decd4c466aa88b0f9341af33dc1aff2478d5"
 
-victory-chart@^24.3.0:
-  version "24.6.1"
-  resolved "http://registry.npm.taobao.org/victory-chart/download/victory-chart-24.6.1.tgz#8e1a85ab42c2e471d356e15f1637430cd57aca90"
+victory-chart@^22.0.0:
+  version "22.0.0"
+  resolved "http://registry.npm.taobao.org/victory-chart/download/victory-chart-22.0.0.tgz#55f0a85c7d14d4f87ab50b761af0ec1731773e6b"
   dependencies:
     d3-voronoi "^1.1.2"
     lodash "^4.17.4"
-    victory-core "^20.6.0"
+    victory-core "^18.0.0"
 
-victory-core@^20.2.0, victory-core@^20.6.0:
-  version "20.6.0"
-  resolved "http://registry.npm.taobao.org/victory-core/download/victory-core-20.6.0.tgz#5f5f4ac43364c9025dbbfbcd97a2f3feb3f9f6ad"
+victory-core@^18.0.0, victory-core@^18.0.1:
+  version "18.0.2"
+  resolved "http://registry.npm.taobao.org/victory-core/download/victory-core-18.0.2.tgz#5a962865d1ce47b1cec740a34a39f8274b6d4e68"
   dependencies:
     d3-ease "^1.0.0"
     d3-interpolate "^1.1.1"
@@ -4686,23 +4675,23 @@ victory-core@^20.2.0, victory-core@^20.6.0:
     d3-timer "^1.0.0"
     lodash "^4.17.4"
 
-victory-native@^0.16.6:
-  version "0.16.6"
-  resolved "http://registry.npm.taobao.org/victory-native/download/victory-native-0.16.6.tgz#cb47d21f178b01d1e1ddcb9178bcc72126828e1f"
+victory-native@0.15.0:
+  version "0.15.0"
+  resolved "http://registry.npm.taobao.org/victory-native/download/victory-native-0.15.0.tgz#047b63c802268f72e1727bf595039646eecdda6e"
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
-    victory-chart "^24.3.0"
-    victory-core "^20.2.0"
-    victory-pie "^13.0.0"
+    victory-chart "^22.0.0"
+    victory-core "^18.0.1"
+    victory-pie "^12.0.0"
 
-victory-pie@^13.0.0:
-  version "13.3.1"
-  resolved "http://registry.npm.taobao.org/victory-pie/download/victory-pie-13.3.1.tgz#26cf91ad492ea5f84785dfc34b705e58515f2386"
+victory-pie@^12.0.0:
+  version "12.0.0"
+  resolved "http://registry.npm.taobao.org/victory-pie/download/victory-pie-12.0.0.tgz#60c734d2976be2d011446fdfa9024e0a5922a605"
   dependencies:
     d3-shape "^1.0.0"
     lodash "^4.17.4"
-    victory-core "^20.6.0"
+    victory-core "^18.0.0"
 
 vinyl@^0.5.0:
   version "0.5.3"

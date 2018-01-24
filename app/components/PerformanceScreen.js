@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
+import { MKColor, MKButton } from 'react-native-material-kit';
 
 type Props = {
   error : boolean,
@@ -23,7 +24,7 @@ class PerformanceScreen extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchData();
+    this.props.fetchPerformanceData();
   }
 
   componentWillUnmount() {
@@ -33,25 +34,19 @@ class PerformanceScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
 
-    const {
-      isLoading,
-      error,
-      fetchData,
-      performanceInfo,
-    } = this.props;
+    console.info(this.props);
 
-    const hasPerformanceData = Object.keys(performanceInfo).length;
+    const performanceInfo = this.props.performanceInfo;
 
     return (
 
-      <View style={{ borderWidth:1,borderColor:'#f0f' }}>
+      <View>
 
         <FlatList
-          style={{borderWidth:1,borderColor:'#f0f',}}
           data={performanceInfo}
           renderItem={({item}) =>
             <View style={{flexDirection: 'row',justifyContent:'space-around',
-            borderWidth:1,borderColor:'#f0f'}}>
+            padding:4}}>
               <Text>{item.c1}</Text>
               <Text>{item.c2}</Text>
               <Text>{item.c3}</Text>
@@ -85,6 +80,21 @@ class PerformanceScreen extends React.Component {
             onPress={() => navigate('Finance')}
             title="财务"
           />
+          <MKButton
+            backgroundColor={MKColor.Teal}
+            shadowRadius={2}
+            shadowOffset={{width:0, height:2}}
+            shadowOpacity={.7}
+            shadowColor="black"
+            onPress={() => {
+              console.log('hi, raised button!');
+            }}
+            >
+            <Text pointerEvents="none"
+                  style={{color: 'white', fontWeight: 'bold',}}>
+              财务
+            </Text>
+          </MKButton>
         </View>
 
       </View>

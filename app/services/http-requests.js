@@ -1,7 +1,6 @@
-import config from '../lib/config';
 
-export const fetchPerformanceData = () => (
-  fetch(config.API_URL_PERFORMANCE)
+export const getData = (url) => (
+  fetch(url)
     .then((res) => res.json())
     .catch((err) => {
       console.info(err);
