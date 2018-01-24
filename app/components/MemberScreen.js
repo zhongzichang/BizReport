@@ -28,7 +28,8 @@ class MemberScreen extends React.Component {
     return (
       <View>
 
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+        padding:4}}>
           <Text>新增会员</Text>
           <Text>17</Text>
           <Text>会销占比</Text>
@@ -37,13 +38,15 @@ class MemberScreen extends React.Component {
           <Text>27%</Text>
         </View>
 
-        <Text>生日会员</Text>
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+        padding:4}}>
+          <Text>生日会员</Text>
+        </View>
 
         <FlatList
-          style={{borderWidth:1,borderColor:'#f0f',}}
           data={this.state.data}
           renderItem={({item}) =>
-          <View style={{flexDirection: 'row',justifyContent:'space-around',borderWidth:1,borderColor:'#f0f'}}>
+          <View style={{flexDirection: 'row',justifyContent:'space-around'}}>
             <View>
               <Text>卡号</Text>
               <Text>{item.cardNumber}</Text>
@@ -82,13 +85,19 @@ class MemberScreen extends React.Component {
           }
         />
 
+        <View style={{flexDirection: 'row',justifyContent:'space-around',padding:4}}>
+          <Text>活跃度</Text>
+        </View>
+
         <VictoryPie
+          padding={{top:0,bottom:100,left:100,right:100}}
+          colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
           data={[
-            { x: "Cats", y: 35 },
-            { x: "Dogs", y: 40 },
-            { x: "Birds", y: 5 },
-            { x: "Mans", y: 20 },
-            { x: "Tigers", y: 30 },
+            { x: "一个月内", y: 35 },
+            { x: "3个月内", y: 40 },
+            { x: "半年内", y: 5 },
+            { x: "1年内", y: 20 },
+            { x: "1年以上", y: 30 },
           ]}
         />
 
