@@ -52,6 +52,9 @@ class GuideScreen extends React.Component {
 
   render() {
 
+    const dataOfTotal = {c1:18017,c2:92376,c3:500000,c4:485885,c5:'97%',
+      c6:'58%',c7:'156',c8:'1.7',c9:'0.70'};
+
     const myDataset = [
       [
           { x: "陈燕", y: 1 },
@@ -104,6 +107,20 @@ class GuideScreen extends React.Component {
             </View>
           }
         />
+
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+        padding:4}}>
+          <Text>合计</Text>
+          <Text>{dataOfTotal.c1}</Text>
+          <Text>{dataOfTotal.c2}</Text>
+          <Text>{dataOfTotal.c3}</Text>
+          <Text>{dataOfTotal.c4}</Text>
+          <Text>{dataOfTotal.c5}</Text>
+          <Text>{dataOfTotal.c6}</Text>
+          <Text>{dataOfTotal.c7}</Text>
+          <Text>{dataOfTotal.c8}</Text>
+          <Text>{dataOfTotal.c9}</Text>
+        </View>
 
         <ScrollView horizontal={true}>
           <OhpColumnChart data={myDataset} />
