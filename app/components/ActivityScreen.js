@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
-import { VictoryPie } from "victory-native";
+import { VictoryPie, VictoryLegend } from "victory-native";
 
 class ActivityScreen extends React.Component {
 
@@ -14,6 +14,9 @@ class ActivityScreen extends React.Component {
     this.state = {
       dataOfActivities: [
         {key:'r1',c1:'序号',c2:'活动名称',c3:'开始时间',c4:'结束时间'},
+        {key:'r2',c1:'1',c2:'短T1元当两元花',c3:'20170801',c4:'20170801'},
+        {key:'r3',c1:'2',c2:'连衣裙满300省100',c3:'20170801',c4:'20170801'},
+        {key:'r4',c1:'3',c2:'秋装第1件9折第2件8折第3件7折',c3:'20170801',c4:'20170801'},
       ],
       dataOfResult: {
         c1: 48000,
@@ -33,9 +36,10 @@ class ActivityScreen extends React.Component {
       <View>
 
         <FlatList
-          data={this.state.data}
+          data={this.state.dataOfActivities}
           renderItem={({item}) =>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row',justifyContent:'space-around',
+            padding:4}}>
               <Text>{item.c1}</Text>
               <Text>{item.c2}</Text>
               <Text>{item.c3}</Text>
@@ -44,7 +48,8 @@ class ActivityScreen extends React.Component {
           }
         />
 
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+        padding:4}}>
           <View>
             <Text>业绩（前）</Text>
             <Text>{this.state.dataOfResult.c1}</Text>
@@ -64,7 +69,8 @@ class ActivityScreen extends React.Component {
         </View>
 
 
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+        padding:4}}>
           <View>
             <Text>售罄（前）</Text>
             <Text>{this.state.dataOfResult.c5}</Text>
@@ -83,8 +89,27 @@ class ActivityScreen extends React.Component {
           </View>
         </View>
 
-        <VictoryPie />
-
+        <VictoryLegend x={125} y={50} height={100}
+          orientation="horizontal"
+          gutter={20}
+          style={{ border: { stroke: "black" } }}
+          data={[
+            { name: "正价", symbol: { fill: "tomato"} },
+            { name: "八折", symbol: { fill: "orange" } },
+            { name: "六折", symbol: { fill: "gold" } },
+            { name: "三折", symbol: { fill: "cyan" } }
+          ]}
+        />
+          <VictoryPie
+            padding={{top:0,bottom:100,left:100,right:100}}
+            colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
+            data={[
+              { x: "正价 35%", y: 35 },
+              { x: "八折 40%", y: 40 },
+              { x: "六折 5%", y: 5 },
+              { x: "三折 20%", y: 20 },
+            ]}
+          />
       </View>
     );
   }
