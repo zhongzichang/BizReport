@@ -80,21 +80,6 @@ class PerformanceScreen extends React.Component {
             onPress={() => navigate('Finance')}
             title="财务"
           />
-          <MKButton
-            backgroundColor={MKColor.Teal}
-            shadowRadius={2}
-            shadowOffset={{width:0, height:2}}
-            shadowOpacity={.7}
-            shadowColor="black"
-            onPress={() => {
-              console.log('hi, raised button!');
-            }}
-            >
-            <Text pointerEvents="none"
-                  style={{color: 'white', fontWeight: 'bold',}}>
-              财务
-            </Text>
-          </MKButton>
         </View>
 
       </View>

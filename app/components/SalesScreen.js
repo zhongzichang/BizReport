@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 
 class SalesScreen extends React.Component {
 
@@ -37,24 +37,35 @@ class SalesScreen extends React.Component {
     };
   }
 
+  onPress = (item) =>
+  {
+
+    const { navigate } = this.props.navigation;
+    navigate('StockDistribution');
+  }
+
   render() {
+
+
     return (
       <View>
         <FlatList
           data={this.state.data}
           renderItem={({item}) =>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>{item.c1}</Text>
-              <Text>{item.c2}</Text>
-              <Text>{item.c3}</Text>
-              <Text>{item.c4}</Text>
-              <Text>{item.c5}</Text>
-              <Text>{item.c6}</Text>
-              <Text>{item.c7}</Text>
-              <Text>{item.c8}</Text>
-              <Text>{item.c9}</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.onPress(item)}>
+              <View style={{flexDirection: 'row',justifyContent:'space-around',
+              padding:4}}>
+                <Text>{item.c1}</Text>
+                <Text>{item.c2}</Text>
+                <Text>{item.c3}</Text>
+                <Text>{item.c4}</Text>
+                <Text>{item.c5}</Text>
+                <Text>{item.c6}</Text>
+                <Text>{item.c7}</Text>
+                <Text>{item.c8}</Text>
+                <Text>{item.c9}</Text>
+              </View>
+            </TouchableOpacity>
           }
         />
       </View>
