@@ -26,7 +26,7 @@ export default class OhpColumnChart extends React.Component {
           domainPadding={{ x: 30, y: 50 }}
         >
             <VictoryStack
-              colorScale={["black", "blue", "tomato"]}
+              colorScale={["blue", "tomato"]}
             >
               {dataset.map((data, i) => {
                 return <VictoryBar data={data} key={i}/>;
@@ -41,11 +41,9 @@ export default class OhpColumnChart extends React.Component {
             <VictoryLegend x={125} y={50}
               orientation="horizontal"
               gutter={20}
-              style={{ border: { stroke: "black" } }}
               data={[
-                { name: "One", symbol: { fill: "tomato", type: "star" } },
-                { name: "Two", symbol: { fill: "orange" }, labels: { fill: "orange" } },
-                { name: "Three", symbol: { fill: "gold" } }
+                { name: "完成率", symbol: { fill: "blue" } },
+                { name: "折扣", symbol: { fill: "tomato" } }
               ]}
             />
         </VictoryChart>

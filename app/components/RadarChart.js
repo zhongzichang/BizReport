@@ -2,40 +2,29 @@ import React from 'react';
 import { VictoryChart, VictoryBar,
   VictoryTheme, VictoryPolarAxis,
   VictoryStack, VictoryAxis,
-  VictoryArea, VictoryGroup, VictoryLabel } from "victory-native";
+  VictoryArea, VictoryGroup,
+  VictoryLabel,VictoryLegend } from "victory-native";
 
 export default class RadarChart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: this.processData(props.data),
-      maxima: this.getMaxima(props.data)
-    };
   }
 
-  getMaxima(data) {
-    const groupedData = Object.keys(data[0]).reduce((memo, key) => {
-      memo[key] = data.map((d) => d[key]);
-      return memo;
-    }, {});
-    return Object.keys(groupedData).reduce((memo, key) => {
-      memo[key] = Math.max(...groupedData[key]);
-      return memo;
-    }, {});
-  }
-
-  processData(data) {
-    const maxByGroup = this.getMaxima(data);
+  processData(data, maxima) {
     const makeDataArray = (d) => {
       return Object.keys(d).map((key) => {
-        return { x: key, y: d[key] / maxByGroup[key] };
+        return { x: key, y: d[key] / maxima[key] };
       });
     };
     return data.map((datum) => makeDataArray(datum));
   }
 
   render() {
-    console.info(this.state);
+
+    const maxima = this.props.maxima;
+    const labels = this.props.labels;
+    const data = this.processData(this.props.data, maxima);
+
     return (
       <VictoryChart polar
         theme={VictoryTheme.material}
@@ -44,12 +33,12 @@ export default class RadarChart extends React.Component {
         <VictoryGroup
           style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         >
-          {this.state.data.map((item, i) => {
+          {data.map((item, i) => {
             return <VictoryBar key={i} data={item} />;
           })}
         </VictoryGroup>
       {
-        Object.keys(this.state.maxima).map((key, i) => {
+        Object.keys(maxima).map((key, i) => {
           return (
             <VictoryPolarAxis key={i} dependentAxis
               style={{
@@ -61,22 +50,18 @@ export default class RadarChart extends React.Component {
                 <VictoryLabel labelPlacement="vertical"/>
               }
               labelPlacement="perpendicular"
-              axisValue={i + 1} label={key}
-              tickFormat={(t) => Math.ceil(t * this.state.maxima[key])}
+              axisValue={i + 1} label={labels[key]}
+              tickFormat={(t) => Math.ceil(t * maxima[key])}
               tickValues={[0.25, 0.5, 0.75]}
             />
           );
         })
       }
-        <VictoryPolarAxis
-          labelPlacement="parallel"
-          tickFormat={() => ""}
-          style={{
-            axis: { stroke: "none" },
-            grid: { stroke: "grey", opacity: 0.5 }
-          }}
-        />
-
+      <VictoryLabel
+        x={300}
+        y={50}
+        text="陈燕"
+      />
       </VictoryChart>
 
     );
