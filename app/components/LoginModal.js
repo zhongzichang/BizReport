@@ -3,6 +3,7 @@ import { Text, View, Button, Modal, StyleSheet } from 'react-native';
 import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
 
 export default class LoginModal extends Component {
+
   state = {
     modalVisible: true,
   };
