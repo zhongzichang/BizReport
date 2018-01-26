@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {Provider} from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import HomeScreen from './components/HomeScreen';
+import HomeContainer from './containers/home-container';
 import PerformanceScreen from './components/PerformanceScreen';
 import StockScreen from './components/StockScreen';
 import SalesScreen from './components/SalesScreen';
@@ -27,7 +27,7 @@ import PerformanceContainer from './containers/performance-container';
 
 
 const BizReportApp = StackNavigator({
-  Home: { screen: HomeScreen },
+  Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
   Stock: { screen: StockScreen },
   Sales: { screen: SalesScreen },

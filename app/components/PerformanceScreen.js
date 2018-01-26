@@ -2,13 +2,6 @@ import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
 import { MKColor, MKButton } from 'react-native-material-kit';
 
-type Props = {
-  error : boolean,
-  isLoading : boolean,
-  weatherInfo : Object,
-  fetchData : Function,
-}
-
 class PerformanceScreen extends React.Component {
 
   static navigationOptions = {

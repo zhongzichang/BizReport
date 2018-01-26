@@ -16,22 +16,29 @@ class HomeScreen extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+
+  }
+
+  componentDidMount(){
+    this.props.fetchShopsData();
+  }
+
+  componentWillUnmount() {
+  }
+
   render() {
 
     const { navigate } = this.props.navigation;
-
-    const stockList = [
-      {key: 1, id: 1, name: '尚都1店'},
-      {key: 2, id: 2, name: '尚都2店'}
-    ];
+    const shopsInfo = this.props.shopsInfo;
 
     return (
 
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-        {stockList != null && stockList.length > 0 &&
+        {shopsInfo != null && shopsInfo.length > 0 &&
           <FlatList
-            data={stockList}
+            data={shopsInfo}
             renderItem={({item}) =>
               <Button
                 onPress={() => navigate('Performance')}

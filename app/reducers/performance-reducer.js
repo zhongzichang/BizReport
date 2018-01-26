@@ -1,7 +1,4 @@
 import {
-  FETCH_DATA_ERROR,
-  FETCH_DATA_REQUEST,
-  FETCH_DATA_SUCCESS,
   FETCH_PERFORMANCE_DATA_SUCCESS,
 } from '../constants/action-names';
 
