@@ -33,9 +33,6 @@ class PerformanceScreen extends React.Component {
   render() {
 
     const { navigate } = this.props.navigation;
-
-    console.info(this.props);
-
     const performanceInfo = this.props.performanceInfo;
 
     return (
