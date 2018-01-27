@@ -10,9 +10,11 @@ class StockScreen extends React.Component {
   constructor() {
     super();
     this.state = {
+      summary : {
+        c1: 1010, c2: 1200, c3: 294,
+        c4: 331280, c5: 350000, c6: 320
+      },
       dataWithCategory: [
-        {key:'r1',c1:'类别',c2:'库存',c3:'上周销量',c4:'库存占比',
-        c5:'大盘库存占比',c6:'销售占比',c7:'大盘销售占比'},
         {key:'r2',c1:'连衣裙',c2:'100',c3:'33',c4:'9.9%',
         c5:'12%',c6:'11.3%',c7:'15%'},
         {key:'r3',c1:'套装',c2:'150',c3:'32',c4:'14.9%',
@@ -47,29 +49,34 @@ class StockScreen extends React.Component {
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
+    const stockSummary = this.state.summary;
+
+    if( stockSummary == null)
+      return null;
 
     return (
+
 
       <View>
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
         padding:4}}>
           <Text>数量</Text>
-          <Text>1010</Text>
+          <Text>{stockSummary.c1}</Text>
           <Text>安存量</Text>
-          <Text>1200</Text>
+          <Text>{stockSummary.c2}</Text>
           <Text>上周销量</Text>
-          <Text>294</Text>
+          <Text>{stockSummary.c3}</Text>
         </View>
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
         padding:4}}>
           <Text>金额</Text>
-          <Text>331280</Text>
+          <Text>{stockSummary.c4}</Text>
           <Text>安存金额</Text>
-          <Text>350000</Text>
+          <Text>{stockSummary.c5}</Text>
           <Text>本周预计</Text>
-          <Text>320</Text>
+          <Text>{stockSummary.c6}</Text>
         </View>
 
         <FlatList
@@ -84,13 +91,19 @@ class StockScreen extends React.Component {
               <Text>{item.c5}</Text>
               <Text>{item.c6}</Text>
               <Text>{item.c7}</Text>
-            </View>
-        }
+            </View>}
+          ListHeaderComponent={() =>
+              <View style={{flexDirection: 'row',justifyContent:'space-around',
+              padding:4}}>
+                <Text>类别</Text>
+                <Text>库存</Text>
+                <Text>上周销量</Text>
+                <Text>库存占比</Text>
+                <Text>大盘库存占比</Text>
+                <Text>销售占比</Text>
+                <Text>大盘销售占比</Text>
+              </View>}
         />
-
-        <View style={{flexDirection: 'row',justifyContent:'space-around',}}>
-          <Text>季节</Text>
-        </View>
 
         <FlatList
           data={this.state.dataWithSeason}
@@ -104,8 +117,12 @@ class StockScreen extends React.Component {
               <Text>{item.c5}</Text>
               <Text>{item.c6}</Text>
               <Text>{item.c7}</Text>
-            </View>
-        }
+            </View>}
+          ListHeaderComponent={() =>
+              <View style={{flexDirection: 'row',justifyContent:'space-around',
+              padding:4}}>
+                <Text>季节</Text>
+              </View>}
         />
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
