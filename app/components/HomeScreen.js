@@ -22,6 +22,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount(){
     this.props.fetchShopsData();
+    this.props.fetchLoginData('abc','123');
   }
 
   componentWillUnmount() {
@@ -31,6 +32,8 @@ class HomeScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
     const shopsInfo = this.props.shopsInfo;
+    const loginInfo = this.props.loginInfo;
+
 
     return (
 
@@ -48,7 +51,9 @@ class HomeScreen extends React.Component {
           />
         }
 
-        <LoginModal />
+        {loginInfo != null && loginInfo.success != 0 &&
+        <LoginModal loginInfo={loginInfo}/>
+        }
 
       </View>
 

@@ -17,6 +17,10 @@ export default class LoginModal extends Component {
   }
 
   render() {
+
+    const loginInfo = this.props.loginInfo;
+
+
     const LoginButton = MKButton.coloredButton()
       .withText('登录')
       .withStyle(styles.loginButton)
@@ -26,9 +30,12 @@ export default class LoginModal extends Component {
       .build();
 
     return (
+
+
+
         <View style={styles.container}>
           <Modal
-              visible={this.state.modalVisible}
+              visible={loginInfo.success != 0}
               animationType={'slide'}
               onRequestClose={() => this.closeModal()}
           >
