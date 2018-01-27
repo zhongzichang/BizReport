@@ -44,6 +44,10 @@ class StockScreen extends React.Component {
   }
 
   render() {
+
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+
     return (
 
       <View>

@@ -34,7 +34,6 @@ class HomeScreen extends React.Component {
     const shopsInfo = this.props.shopsInfo;
     const loginInfo = this.props.loginInfo;
 
-
     return (
 
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -44,7 +43,7 @@ class HomeScreen extends React.Component {
             data={shopsInfo}
             renderItem={({item}) =>
               <Button
-                onPress={() => navigate('Performance')}
+                onPress={() => navigate('Performance', { shopInfo: item })}
                 title={item.name}
               />
             }
