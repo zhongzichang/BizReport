@@ -9,8 +9,10 @@ export const fetchStockData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
     return getData(config.API_URL_STOCK)
-      .then((data) => dispatch(
-        fetchStockDataSuccess(data.map(item => {item.key=item.id; return item})))
+      .then(
+        (data) => dispatch(
+          fetchStockDataSuccess(data)
+        )
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

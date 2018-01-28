@@ -1,13 +1,19 @@
 
-export const getData = (url) => (
-  fetch(url)
-    .then((res) => res.json())
+export const getData = (url) => {
+  console.info(url);
+  return fetch(url)
+    .then((res) => {
+      console.info(res);
+      return res.json()
+    })
     .catch((err) => {
+      console.info(err);
       return err;
     })
-);
+}
 
 export const postData = (url, data) => {
+  console.info(url);
   console.info(data);
   return fetch(url,
     {
