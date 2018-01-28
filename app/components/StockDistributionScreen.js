@@ -7,8 +7,6 @@ class StockDistributionScreen extends React.Component {
     title: '库存分布'
   };
 
-  //const rowHeaders = ['业绩','目标','完成率','连带','折扣','毛利率'];
-
   constructor() {
     super();
   }
@@ -17,7 +15,7 @@ class StockDistributionScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
 
-    const header = {key:'r1',c1:'颜色',c2:'店铺',
+    const header = {c1:'颜色',c2:'店铺',
       c3:'S',c4:'M',c5:'L',
       c6:'库存合计',c7:'周销量'};
 
@@ -101,6 +99,7 @@ class StockDistributionScreen extends React.Component {
                 <View style={{flexDirection: 'row',
                 justifyContent:'space-around',
                 padding:4}}>
+                  <Text>合计</Text>
                   <Text>{category.total.c1}</Text>
                   <Text>{category.total.c2}</Text>
                   <Text>{category.total.c3}</Text>
