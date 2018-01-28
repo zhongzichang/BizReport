@@ -14,8 +14,8 @@ import {
 import {Provider} from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import HomeContainer from './containers/home-container';
-import PerformanceScreen from './components/PerformanceScreen';
-import StockScreen from './components/StockScreen';
+import PerformanceContainer from './containers/performance-container';
+import StockContainer from './containers/stock-container';
 import SalesScreen from './components/SalesScreen';
 import MemberScreen from './components/MemberScreen';
 import GuideScreen from './components/GuideScreen';
@@ -23,13 +23,12 @@ import ActivityScreen from './components/ActivityScreen';
 import FinanceScreen from './components/FinanceScreen';
 import StockDistributionScreen from './components/StockDistributionScreen';
 import configureStore from './store/configureStore';
-import PerformanceContainer from './containers/performance-container';
 
 
 const BizReportApp = StackNavigator({
   Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
-  Stock: { screen: StockScreen },
+  Stock: { screen: StockContainer },
   Sales: { screen: SalesScreen },
   Member: { screen: MemberScreen },
   Guide: { screen: GuideScreen },

@@ -25,9 +25,12 @@ class PerformanceScreen extends React.Component {
 
   render() {
 
+    const performanceInfo = this.props.performanceInfo;
+    if (performanceInfo == null)
+      return null;
+
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
-    const performanceInfo = this.props.performanceInfo;
 
     return (
 
