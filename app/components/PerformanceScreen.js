@@ -56,6 +56,7 @@ class PerformanceScreen extends React.Component {
                 <Text>本周</Text>
                 <Text>本月</Text>
               </View>}
+          keyExtractor={(item: object, index: number) => index}
         />
 
         <View style={{flexDirection:'row',flexWrap:'wrap'}}>

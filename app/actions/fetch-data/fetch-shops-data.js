@@ -9,8 +9,10 @@ export const fetchShopsData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
     return getData(config.API_URL_SHOPS)
-      .then((data) => dispatch(
-        fetchShopsDataSuccess(data.map(item => {item.key=item.id; return item})))
+      .then(
+        (data) => dispatch(
+          fetchShopsDataSuccess(data)
+        )
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

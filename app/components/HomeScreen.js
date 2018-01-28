@@ -47,6 +47,7 @@ class HomeScreen extends React.Component {
                 title={item.name}
               />
             }
+            keyExtractor={(item: object, index: number) => index}
           />
         }
 
