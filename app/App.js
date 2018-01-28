@@ -16,7 +16,7 @@ import { StackNavigator } from 'react-navigation';
 import HomeContainer from './containers/home-container';
 import PerformanceContainer from './containers/performance-container';
 import StockContainer from './containers/stock-container';
-import SalesScreen from './components/SalesScreen';
+import SalesContainer from './containers/sales-container';
 import MemberScreen from './components/MemberScreen';
 import GuideScreen from './components/GuideScreen';
 import ActivityScreen from './components/ActivityScreen';
@@ -29,7 +29,7 @@ const BizReportApp = StackNavigator({
   Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
   Stock: { screen: StockContainer },
-  Sales: { screen: SalesScreen },
+  Sales: { screen: SalesContainer },
   Member: { screen: MemberScreen },
   Guide: { screen: GuideScreen },
   Activity: { screen: ActivityScreen },
