@@ -11,32 +11,47 @@ class ActivityScreen extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      dataOfActivities: [
-        {key:'r1',c1:'序号',c2:'活动名称',c3:'开始时间',c4:'结束时间'},
-        {key:'r2',c1:'1',c2:'短T1元当两元花',c3:'20170801',c4:'20170801'},
-        {key:'r3',c1:'2',c2:'连衣裙满300省100',c3:'20170801',c4:'20170801'},
-        {key:'r4',c1:'3',c2:'秋装第1件9折第2件8折第3件7折',c3:'20170801',c4:'20170801'},
-      ],
-      dataOfResult: {
-        c1: 48000,
-        c2: 120000,
-        c3: '-60%',
-        c4: '40%',
-        c5: '62%',
-        c6: '78%',
-        c7: '2%',
-        c8: '18%'
-      }
-    };
+  }
+
+  componentWillUnmount() {
+
+  }
+
+  componentDidMount(){
+    this.props.fetchActivityData();
+  }
+
+  componentWillUnmount() {
   }
 
   render() {
+
+    console.info(this.props.activityInfo);
+
+    const activityInfo = this.props.activityInfo;
+    if( !activityInfo )
+      return null;
+    const {summary, data, pie} = activityInfo;
+    if (!summary || !data || !pie)
+      return null;
+    const legend = pie.map(
+      item => {
+        return {
+          name: item.x,
+          symbol: { fill: item.fill }
+        }
+      }
+    );
+
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+
+
     return (
       <View>
 
         <FlatList
-          data={this.state.dataOfActivities}
+          data={data}
           renderItem={({item}) =>
             <View style={{flexDirection: 'row',justifyContent:'space-around',
             padding:4}}>
@@ -46,25 +61,34 @@ class ActivityScreen extends React.Component {
               <Text>{item.c4}</Text>
             </View>
           }
+          ListHeaderComponent={() =>
+              <View style={{flexDirection: 'row',justifyContent:'space-around',
+              padding:4}}>
+                <Text>序号</Text>
+                <Text>活动名称</Text>
+                <Text>开始时间</Text>
+                <Text>结束时间</Text>
+              </View>}
+          keyExtractor={(item: object, index: number) => index}
         />
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
         padding:4}}>
           <View>
             <Text>业绩（前）</Text>
-            <Text>{this.state.dataOfResult.c1}</Text>
+            <Text>{summary.c1}</Text>
           </View>
           <View>
             <Text>业绩（后）</Text>
-            <Text>{this.state.dataOfResult.c2}</Text>
+            <Text>{summary.c2}</Text>
           </View>
           <View>
             <Text>环比</Text>
-            <Text>{this.state.dataOfResult.c3}</Text>
+            <Text>{summary.c3}</Text>
           </View>
           <View>
             <Text>折扣</Text>
-            <Text>{this.state.dataOfResult.c4}</Text>
+            <Text>{summary.c4}</Text>
           </View>
         </View>
 
@@ -73,19 +97,19 @@ class ActivityScreen extends React.Component {
         padding:4}}>
           <View>
             <Text>售罄（前）</Text>
-            <Text>{this.state.dataOfResult.c5}</Text>
+            <Text>{summary.c5}</Text>
           </View>
           <View>
             <Text>售罄（后）</Text>
-            <Text>{this.state.dataOfResult.c6}</Text>
+            <Text>{summary.c6}</Text>
           </View>
           <View>
             <Text>涨幅</Text>
-            <Text>{this.state.dataOfResult.c7}</Text>
+            <Text>{summary.c7}</Text>
           </View>
           <View>
             <Text>毛利率</Text>
-            <Text>{this.state.dataOfResult.c8}</Text>
+            <Text>{summary.c8}</Text>
           </View>
         </View>
 
@@ -93,22 +117,11 @@ class ActivityScreen extends React.Component {
           orientation="horizontal"
           gutter={20}
           style={{ border: { stroke: "black" } }}
-          data={[
-            { name: "正价", symbol: { fill: "tomato"} },
-            { name: "八折", symbol: { fill: "orange" } },
-            { name: "六折", symbol: { fill: "gold" } },
-            { name: "三折", symbol: { fill: "cyan" } }
-          ]}
+          data={legend}
         />
           <VictoryPie
             padding={{top:0,bottom:100,left:100,right:100}}
-            colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-            data={[
-              { x: "正价 35%", y: 35 },
-              { x: "八折 40%", y: 40 },
-              { x: "六折 5%", y: 5 },
-              { x: "三折 20%", y: 20 },
-            ]}
+            data={pie}
           />
       </View>
     );
