@@ -6,6 +6,7 @@ import stockReducer from './stock-reducer';
 import salesReducer from './sales-reducer';
 import stockDistributionReducer from './stock-distribution-reducer';
 import memberReducer from './member-reducer';
+import guideReducer from './guide-reducer';
 
 // Root Reducer
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   sales : salesReducer,
   stockDistribution : stockDistributionReducer,
   member : memberReducer,
+  guide : guideReducer,
 });
 
 export default rootReducer;
