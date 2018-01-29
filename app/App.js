@@ -20,7 +20,7 @@ import SalesContainer from './containers/sales-container';
 import MemberContainer from './containers/member-container';
 import GuideContainer from './containers/guide-container';
 import ActivityContainer from './containers/activity-container';
-import FinanceScreen from './components/FinanceScreen';
+import FinanceContainer from './containers/finance-container';
 import StockDistributionContainer
   from './containers/stock-distribution-container';
 import configureStore from './store/configureStore';
@@ -34,7 +34,7 @@ const BizReportApp = StackNavigator({
   Member: { screen: MemberContainer },
   Guide: { screen: GuideContainer },
   Activity: { screen: ActivityContainer },
-  Finance: { screen: FinanceScreen },
+  Finance: { screen: FinanceContainer },
   StockDistribution: { screen: StockDistributionContainer },
 });
 

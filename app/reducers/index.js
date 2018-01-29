@@ -8,6 +8,7 @@ import stockDistributionReducer from './stock-distribution-reducer';
 import memberReducer from './member-reducer';
 import guideReducer from './guide-reducer';
 import activityReducer from './activity-reducer';
+import financeReducer from './finance-reducer';
 
 // Root Reducer
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   member : memberReducer,
   guide : guideReducer,
   activity : activityReducer,
+  finance : financeReducer,
 });
 
 export default rootReducer;

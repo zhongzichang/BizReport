@@ -14,5 +14,6 @@ export default {
   API_URL_MEMBER: `${URL_PREFIX}/member.json`,
   API_URL_GUIDE: `${URL_PREFIX}/guide.json`,
   API_URL_ACTIVITY: `${URL_PREFIX}/activity.json`,
+  API_URL_FINANCE: `${URL_PREFIX}/finance.json`,
 
 };
