@@ -10,41 +10,50 @@ class MemberScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      data: [{key:'90004',cardNumber: '90005', name:'唐丽君', createdTime:'20150101',
-        mobile:'1388886666', score: 100, balance: 430,
-        rfmType: 133, buyRate: 6, buyAmount: 2980,
-        lastTime: '20170214', dormancyDays: 210
-      },
-      {key:'90005',cardNumber: '90005', name:'杨志伟', createdTime:'20150102',
-        mobile:'1388887777', score: 130, balance: 40,
-        rfmType: 313, buyRate: 6, buyAmount: 2980,
-        lastTime: '20170314', dormancyDays: 210
-      }]
-    };
+  }
+
+  componentWillUnmount() {
+
+  }
+
+  componentDidMount(){
+    this.props.fetchMemberData();
+  }
+
+  componentWillUnmount() {
   }
 
   render() {
+
+
+    console.info(this.props.memberInfo);
+
+    const memberInfo = this.props.memberInfo;
+    if( !memberInfo )
+      return null;
+    const {summary, data, liveness} = memberInfo;
+    if (!summary || !data || !liveness)
+      return null;
+
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+
+
     return (
       <View>
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
         padding:4}}>
           <Text>新增会员</Text>
-          <Text>17</Text>
+          <Text>{summary.c1}</Text>
           <Text>会销占比</Text>
-          <Text>35%</Text>
+          <Text>{summary.c2}</Text>
           <Text>回购率</Text>
-          <Text>27%</Text>
-        </View>
-
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>生日会员</Text>
+          <Text>{summary.c3}</Text>
         </View>
 
         <FlatList
-          data={this.state.data}
+          data={data}
           renderItem={({item}) =>
           <View style={{flexDirection: 'row',justifyContent:'space-around'}}>
             <View>
@@ -83,6 +92,12 @@ class MemberScreen extends React.Component {
             </View>
           </View>
           }
+          ListHeaderComponent={() =>
+              <View style={{flexDirection: 'row',justifyContent:'space-around',
+              padding:4}}>
+                <Text>生日会员</Text>
+              </View>}
+          keyExtractor={(item: object, index: number) => index}
         />
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',padding:4}}>
@@ -92,13 +107,7 @@ class MemberScreen extends React.Component {
         <VictoryPie
           padding={{top:0,bottom:100,left:100,right:100}}
           colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-          data={[
-            { x: "一个月内", y: 35 },
-            { x: "3个月内", y: 40 },
-            { x: "半年内", y: 5 },
-            { x: "1年内", y: 20 },
-            { x: "1年以上", y: 30 },
-          ]}
+          data={liveness}
         />
 
       </View>

@@ -11,5 +11,6 @@ export default {
   API_URL_STOCK: `${URL_PREFIX}/stock.json`,
   API_URL_SALES: `${URL_PREFIX}/sales.json`,
   API_URL_STOCK_DISTRIBUTION: `${URL_PREFIX}/stock-distribution.json`,
+  API_URL_MEMBER: `${URL_PREFIX}/member.json`,
 
 };

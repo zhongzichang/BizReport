@@ -17,7 +17,7 @@ import HomeContainer from './containers/home-container';
 import PerformanceContainer from './containers/performance-container';
 import StockContainer from './containers/stock-container';
 import SalesContainer from './containers/sales-container';
-import MemberScreen from './components/MemberScreen';
+import MemberContainer from './containers/member-container';
 import GuideScreen from './components/GuideScreen';
 import ActivityScreen from './components/ActivityScreen';
 import FinanceScreen from './components/FinanceScreen';
@@ -31,7 +31,7 @@ const BizReportApp = StackNavigator({
   Performance: { screen: PerformanceContainer },
   Stock: { screen: StockContainer },
   Sales: { screen: SalesContainer },
-  Member: { screen: MemberScreen },
+  Member: { screen: MemberContainer },
   Guide: { screen: GuideScreen },
   Activity: { screen: ActivityScreen },
   Finance: { screen: FinanceScreen },
