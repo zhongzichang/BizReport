@@ -4,6 +4,7 @@ import shopsReducer from './shops-reducer';
 import loginReducer from './login-reducer';
 import stockReducer from './stock-reducer';
 import salesReducer from './sales-reducer';
+import stockDistributionReducer from './stock-distribution-reducer';
 
 // Root Reducer
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   login : loginReducer,
   stock : stockReducer,
   sales : salesReducer,
+  stockDistribution : stockDistributionReducer,
 });
 
 export default rootReducer;

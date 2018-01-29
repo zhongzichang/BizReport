@@ -10,5 +10,6 @@ export default {
   API_URL_LOGIN: `${URL_PREFIX}/login.php`,
   API_URL_STOCK: `${URL_PREFIX}/stock.json`,
   API_URL_SALES: `${URL_PREFIX}/sales.json`,
+  API_URL_STOCK_DISTRIBUTION: `${URL_PREFIX}/stock-distribution.json`,
 
 };

@@ -21,7 +21,8 @@ import MemberScreen from './components/MemberScreen';
 import GuideScreen from './components/GuideScreen';
 import ActivityScreen from './components/ActivityScreen';
 import FinanceScreen from './components/FinanceScreen';
-import StockDistributionScreen from './components/StockDistributionScreen';
+import StockDistributionContainer
+  from './containers/stock-distribution-container';
 import configureStore from './store/configureStore';
 
 
@@ -34,7 +35,7 @@ const BizReportApp = StackNavigator({
   Guide: { screen: GuideScreen },
   Activity: { screen: ActivityScreen },
   Finance: { screen: FinanceScreen },
-  StockDistribution: { screen: StockDistributionScreen },
+  StockDistribution: { screen: StockDistributionContainer },
 });
 
 const store = configureStore({});
