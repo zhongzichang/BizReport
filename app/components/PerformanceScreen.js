@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 class PerformanceScreen extends React.Component {
 
@@ -58,31 +59,88 @@ class PerformanceScreen extends React.Component {
           keyExtractor={(item: object, index: number) => index}
         />
 
-        <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-          <Button
-            onPress={() => navigate('Stock', {shopInfo})}
-            title="库存"
-          />
-          <Button
-            onPress={() => navigate('Sales', {shopInfo})}
-            title="畅滞销"
-          />
-          <Button
-            onPress={() => navigate('Member', {shopInfo})}
-            title="会员"
-          />
-          <Button
-            onPress={() => navigate('Guide', {shopInfo})}
-            title="导购"
-          />
-          <Button
-            onPress={() => navigate('Activity', {shopInfo})}
-            title="活动"
-          />
-          <Button
-            onPress={() => navigate('Finance', {shopInfo})}
-            title="财务"
-          />
+        <View style={{marginTop: 30}}>
+
+          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+                onPress={() => navigate('Stock', {shopInfo})}
+                title="库存"
+              />
+            </View>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30, marginLeft:1, marginRight:1}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+                onPress={() => navigate('Sales', {shopInfo})}
+                title="畅滞销"
+              />
+            </View>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+              onPress={() => navigate('Member', {shopInfo})}
+              title="会员"
+              />
+            </View>
+          </View>
+
+          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30, marginTop:1}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+                onPress={() => navigate('Guide', {shopInfo})}
+                title="导购"
+                style={{flex: 1}}
+              />
+            </View>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30, marginTop:1, marginLeft:1, marginRight:1}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+                onPress={() => navigate('Activity', {shopInfo})}
+                title="活动"
+                style={{flex: 1}}
+              />
+            </View>
+            <View style={{flex: 1, backgroundColor: 'white',
+            paddingTop:30, paddingBottom:30, marginTop:1}}>
+              <Icon
+                name='sc-telegram'
+                type='evilicon'
+                color='#517fa4'
+              />
+              <Button
+                onPress={() => navigate('Finance', {shopInfo})}
+                title="财务"
+                style={{flex: 1}}
+              />
+            </View>
+          </View>
         </View>
 
       </View>
