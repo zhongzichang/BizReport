@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import {Button, List, ListItem} from 'react-native-elements';
 import LoginModal from './LoginModal';
 
 class HomeScreen extends React.Component {
@@ -50,6 +51,43 @@ class HomeScreen extends React.Component {
             keyExtractor={(item: object, index: number) => index}
           />
         }
+        
+        {shopsInfo != null && shopsInfo.length > 0 &&
+          <List containerStyle={{marginBottom: 20}}>
+            {
+              shopsInfo.map((item, i) => (
+                <ListItem
+                  key={i}
+                  title={item.name}
+                />
+              ))
+            }
+          </List>
+        }
+
+        <Button
+          title='BUTTON' />
+
+        <Button
+          raised
+          icon={{name: 'cached'}}
+          title='BUTTON WITH ICON' />
+
+        <Button
+          large
+          iconRight={{name: 'code'}}
+          title='LARGE WITH RIGHT ICON' />
+
+        <Button
+          large
+          icon={{name: 'envira', type: 'font-awesome'}}
+          title='LARGE WITH ICON TYPE' />
+
+        <Button
+          large
+          icon={{name: 'squirrel', type: 'octicon' }}
+          title='OCTICON'
+          backgroundColor='#4736C9' />
 
         {loginInfo != null && loginInfo.success != 0 &&
         <LoginModal loginInfo={loginInfo}/>
