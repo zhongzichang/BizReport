@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
-import { MKColor, MKButton } from 'react-native-material-kit';
 
 class PerformanceScreen extends React.Component {
 
@@ -41,20 +40,20 @@ class PerformanceScreen extends React.Component {
           renderItem={({item}) =>
             <View style={{flexDirection: 'row',justifyContent:'space-around',
             padding:4}}>
-              <Text>{item.c1}</Text>
-              <Text>{item.c2}</Text>
-              <Text>{item.c3}</Text>
-              <Text>{item.c4}</Text>
-              <Text>{item.c5}</Text>
+              <Text style={{flex: 1}}>{item.c1}</Text>
+              <Text style={{flex: 1}}>{item.c2}</Text>
+              <Text style={{flex: 1}}>{item.c3}</Text>
+              <Text style={{flex: 1}}>{item.c4}</Text>
+              <Text style={{flex: 1}}>{item.c5}</Text>
             </View>}
           ListHeaderComponent={() =>
               <View style={{flexDirection: 'row',justifyContent:'space-around',
               padding:4}}>
-                <Text>{shopInfo != null && shopInfo.name}</Text>
-                <Text>今天</Text>
-                <Text>昨天</Text>
-                <Text>本周</Text>
-                <Text>本月</Text>
+                <Text style={{flex: 1}}>{shopInfo != null && shopInfo.name}</Text>
+                <Text style={{flex: 1}}>今天</Text>
+                <Text style={{flex: 1}}>昨天</Text>
+                <Text style={{flex: 1}}>本周</Text>
+                <Text style={{flex: 1}}>本月</Text>
               </View>}
           keyExtractor={(item: object, index: number) => index}
         />

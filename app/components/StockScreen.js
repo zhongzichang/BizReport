@@ -81,7 +81,7 @@ class StockScreen extends React.Component {
                 <Text>库存</Text>
                 <Text>上周销量</Text>
                 <Text>库存占比</Text>
-                <Text>大盘库存占比</Text>
+                <Text>大盘\n库存占比</Text>
                 <Text>销售占比</Text>
                 <Text>大盘销售占比</Text>
               </View>}

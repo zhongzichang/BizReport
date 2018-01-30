@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Button, Modal, StyleSheet } from 'react-native';
-import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
+import { Text, View, Modal, StyleSheet, TextInput } from 'react-native';
+import {Button} from 'react-native-elements';
 
 export default class LoginModal extends Component {
 
@@ -20,18 +20,7 @@ export default class LoginModal extends Component {
 
     const loginInfo = this.props.loginInfo;
 
-
-    const LoginButton = MKButton.coloredButton()
-      .withText('登录')
-      .withStyle(styles.loginButton)
-      .withOnPress(() => {
-        this.closeModal();
-      })
-      .build();
-
     return (
-
-
 
         <View style={styles.container}>
           <Modal
@@ -41,21 +30,9 @@ export default class LoginModal extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
-                <MKTextField
-                  tintColor={MKColor.Lime}
-                  textInputStyle={{color: MKColor.Orange}}
-                  placeholder="用户名"
-                  style={styles.textfield}
-                />
-                <MKTextField
-                  tintColor={MKColor.Lime}
-                  textInputStyle={{color: MKColor.Orange}}
-                  placeholder="密码"
-                  style={styles.textfield}
-                />
-
-                <LoginButton />
-
+                <TextInput value="用户名"/>
+                <TextInput value="密码"/>
+                <Button title="登录" />
               </View>
             </View>
           </Modal>

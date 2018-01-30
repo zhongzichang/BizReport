@@ -37,28 +37,18 @@ class HomeScreen extends React.Component {
 
     return (
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View>
 
-        {shopsInfo != null && shopsInfo.length > 0 &&
-          <FlatList
-            data={shopsInfo}
-            renderItem={({item}) =>
-              <Button
-                onPress={() => navigate('Performance', { shopInfo: item })}
-                title={item.name}
-              />
-            }
-            keyExtractor={(item: object, index: number) => index}
-          />
-        }
-        
         {shopsInfo != null && shopsInfo.length > 0 &&
           <List containerStyle={{marginBottom: 20}}>
             {
               shopsInfo.map((item, i) => (
                 <ListItem
                   key={i}
+                  icon={{name: 'cached'}}
                   title={item.name}
+                  onPress={() => navigate('Performance', { shopInfo: item })}
+                  underlayColor="black"
                 />
               ))
             }
@@ -66,27 +56,8 @@ class HomeScreen extends React.Component {
         }
 
         <Button
-          title='BUTTON' />
-
-        <Button
-          raised
-          icon={{name: 'cached'}}
-          title='BUTTON WITH ICON' />
-
-        <Button
-          large
-          iconRight={{name: 'code'}}
-          title='LARGE WITH RIGHT ICON' />
-
-        <Button
-          large
-          icon={{name: 'envira', type: 'font-awesome'}}
-          title='LARGE WITH ICON TYPE' />
-
-        <Button
-          large
           icon={{name: 'squirrel', type: 'octicon' }}
-          title='OCTICON'
+          title='退出'
           backgroundColor='#4736C9' />
 
         {loginInfo != null && loginInfo.success != 0 &&

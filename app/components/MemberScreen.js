@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList, ListView } from 'react-native';
-import { VictoryPie,VictoryLabel,VictoryContainer } from "victory-native";
+import { VictoryPie,VictoryLabel,VictoryLegend } from "victory-native";
 
 class MemberScreen extends React.Component {
 
@@ -99,17 +99,15 @@ class MemberScreen extends React.Component {
               </View>}
           keyExtractor={(item: object, index: number) => index}
         />
-        <VictoryContainer>
-          <VictoryLabel
-            x={300}
-            y={50}
-            text="活跃度"
-          />
+
+                  <VictoryLabel x={0} y={0}
+                    text="活跃度"
+                  />
           <VictoryPie
             padding={{top:0,bottom:100,left:100,right:100}}
             data={liveness}
-          />
-        </VictoryContainer>
+          >
+          </VictoryPie>
 
       </View>
     );
