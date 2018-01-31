@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity, Image } from 'react-native';
 import config from '../lib/config.js';
+import styles from './styles';
 
 class SalesScreen extends React.Component {
 
@@ -43,39 +44,36 @@ class SalesScreen extends React.Component {
       <View>
         <FlatList
           data={salesInfo}
-          renderItem={({item}) =>
+          ListHeaderComponent={() =>
+              <View style={styles.headRow}>
+                <Text style={styles.headCell}>排名</Text>
+                <Text style={styles.headCell}>款色</Text>
+                <Text style={styles.headCell}>图片</Text>
+                <Text style={styles.headCell}>周销量</Text>
+                <Text style={styles.headCell}>周售罄>40%</Text>
+                <Text style={styles.headCell}>库存</Text>
+                <Text style={styles.headCell}>已销天数</Text>
+                <Text style={styles.headCell}>预销天数</Text>
+                <Text style={styles.headCell}>累计售罄</Text>
+              </View>}
+          keyExtractor={(item: object, index: number) => index}
+          renderItem={({item,index}) =>
             <TouchableOpacity onPress={() => this.onPress(item)}>
-              <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4}}>
-                <Text>{item.c1}</Text>
-                <Text>{item.c2}</Text>
-                <Image
-                  style={{width: 20, height: 20}}
+              <View style={index%2==0?styles.evenRow:styles.oddRow}>
+                <Text style={styles.cell}>{item.c1}</Text>
+                <Text style={styles.cell}>{item.c2}</Text>
+                <Image style={styles.cell}
                   source={{uri: config.IMAGE_URL_PREFIX+'/'+item.c3}}
                 />
-                <Text>{item.c4}</Text>
-                <Text>{item.c5}</Text>
-                <Text>{item.c6}</Text>
-                <Text>{item.c7}</Text>
-                <Text>{item.c8}</Text>
-                <Text>{item.c9}</Text>
+                <Text style={styles.cell}>{item.c4}</Text>
+                <Text style={styles.cell}>{item.c5}</Text>
+                <Text style={styles.cell}>{item.c6}</Text>
+                <Text style={styles.cell}>{item.c7}</Text>
+                <Text style={styles.cell}>{item.c8}</Text>
+                <Text style={styles.cell}>{item.c9}</Text>
               </View>
             </TouchableOpacity>
           }
-          ListHeaderComponent={() =>
-              <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4}}>
-                <Text>排名</Text>
-                <Text>款色</Text>
-                <Text>图片</Text>
-                <Text>周销量</Text>
-                <Text>周售罄>40%</Text>
-                <Text>库存</Text>
-                <Text>已销天数</Text>
-                <Text>预销天数</Text>
-                <Text>累计售罄</Text>
-              </View>}
-          keyExtractor={(item: object, index: number) => index}
         />
       </View>
     );
