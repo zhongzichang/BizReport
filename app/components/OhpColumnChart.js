@@ -22,7 +22,7 @@ export default class OhpColumnChart extends React.Component {
     const dataset = this.transformData(this.props.data);
     const tickFormat = Object.values(dataset[0]).map(item => item.x);
     return (
-        <VictoryChart height={400} width={400}
+        <VictoryChart
           domainPadding={{ x: 30, y: 50 }}
         >
             <VictoryStack
@@ -40,7 +40,7 @@ export default class OhpColumnChart extends React.Component {
             />
             <VictoryLegend x={125} y={50}
               orientation="horizontal"
-              gutter={20}
+              gutter={30}
               data={[
                 { name: "完成率", symbol: { fill: "blue" } },
                 { name: "折扣", symbol: { fill: "tomato" } }

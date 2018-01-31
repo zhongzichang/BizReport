@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Button, FlatList,ScrollView } from 'react-native';
+import { View, Text, Button, FlatList,ScrollView,TouchableOpacity } from 'react-native';
 import { VictoryChart, VictoryBar,
   VictoryTheme, VictoryPolarAxis,
   VictoryStack, VictoryAxis, VictoryArea } from "victory-native";
 import OhpColumnChart from "./OhpColumnChart";
 import RadarChart from "./RadarChart";
+import styles from './styles';
 
 
 class GuideScreen extends React.Component {
@@ -89,52 +90,47 @@ class GuideScreen extends React.Component {
 
       <View>
 
-        <ScrollView horizontal={true}>
           <View>
 
             <FlatList
               data={data}
-              renderItem={({item}) =>
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>{item.c1}</Text>
-                  <Text>{item.c2}</Text>
-                  <Text>{item.c3}</Text>
-                  <Text>{item.c4}</Text>
-                  <Text>{item.c5}</Text>
-                  <Text>{item.c6}</Text>
-                  <Text>{item.c7}</Text>
-                  <Text>{item.c8}</Text>
-                  <Text>{item.c9}</Text>
-                  <Text>{item.c10}</Text>
-                </View>
-              }
               ListHeaderComponent={() =>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
+                  <View style={styles.headRow}>
                     {
-                      header.map((item,i) => <Text key={i}>{item}</Text>)
+                      header.map((item,i) => <Text key={i} style={styles.headCell}>{item}</Text>)
                     }
                   </View>}
               keyExtractor={(item: object, index: number) => index}
+              renderItem={({item, index}) =>
+                <TouchableOpacity style={index%2==0?styles.evenRow:styles.oddRow}>
+                  <Text style={styles.cell}>{item.c1}</Text>
+                  <Text style={styles.cell}>{item.c2}</Text>
+                  <Text style={styles.cell}>{item.c3}</Text>
+                  <Text style={styles.cell}>{item.c4}</Text>
+                  <Text style={styles.cell}>{item.c5}</Text>
+                  <Text style={styles.cell}>{item.c6}</Text>
+                  <Text style={styles.cell}>{item.c7}</Text>
+                  <Text style={styles.cell}>{item.c8}</Text>
+                  <Text style={styles.cell}>{item.c9}</Text>
+                  <Text style={styles.cell}>{item.c10}</Text>
+                </TouchableOpacity>
+              }
               ListFooterComponent={() =>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
-                    <Text>合计</Text>
-                    <Text>{total.c1}</Text>
-                    <Text>{total.c2}</Text>
-                    <Text>{total.c3}</Text>
-                    <Text>{total.c4}</Text>
-                    <Text>{total.c5}</Text>
-                    <Text>{total.c6}</Text>
-                    <Text>{total.c7}</Text>
-                    <Text>{total.c8}</Text>
-                    <Text>{total.c9}</Text>
+                  <View style={styles.footRow}>
+                    <Text style={styles.footCell}>合计</Text>
+                    <Text style={styles.footCell}>{total.c1}</Text>
+                    <Text style={styles.footCell}>{total.c2}</Text>
+                    <Text style={styles.footCell}>{total.c3}</Text>
+                    <Text style={styles.footCell}>{total.c4}</Text>
+                    <Text style={styles.footCell}>{total.c5}</Text>
+                    <Text style={styles.footCell}>{total.c6}</Text>
+                    <Text style={styles.footCell}>{total.c7}</Text>
+                    <Text style={styles.footCell}>{total.c8}</Text>
+                    <Text style={styles.footCell}>{total.c9}</Text>
                   </View>}
             />
 
           </View>
-        </ScrollView>
 
         <ScrollView horizontal={true}>
           <OhpColumnChart data={ohpData} />
