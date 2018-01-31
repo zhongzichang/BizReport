@@ -88,7 +88,7 @@ class GuideScreen extends React.Component {
     return (
 
 
-      <View>
+      <View style={{marginTop:10,backgroundColor:'white'}}>
 
           <View>
 

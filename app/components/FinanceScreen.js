@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, FlatList, ScrollView } from 'react-native';
 import { VictoryBar, VictoryChart, VictoryTheme,VictoryLabel } from "victory-native";
+import styles from './styles';
 
 class FinanceScreen extends React.Component {
 
@@ -40,129 +41,113 @@ class FinanceScreen extends React.Component {
     return (
       <View>
 
-      <ScrollView>
+      <ScrollView style={{marginTop:10,backgroundColor:'white'}}>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>收入</Text>
-          <View>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>零售</Text>
-              <View>
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>现金</Text>
-                  <Text>{income.c1}</Text>
+        <View style={styles.row}>
+          <View style={{flex:1, backgroundColor:'steelblue',justifyContent:'space-around'}}>
+            <Text style={{color:'white'}}>收入</Text>
+          </View>
+          <View style={{flex:3}}>
+
+            <View style={styles.row}>
+              <View style={{flex:1,justifyContent:'space-around'}}>
+                <Text>零售</Text>
+              </View>
+              <View style={{flex:2}}>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>现金</Text>
+                  <Text style={styles.cell}>{income.c1}</Text>
                 </View>
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>刷卡</Text>
-                  <Text>{income.c2}</Text>
+                <View style={styles.oddRow}>
+                  <Text style={styles.cell}>刷卡</Text>
+                  <Text style={styles.cell}>{income.c2}</Text>
                 </View>
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>支付宝</Text>
-                  <Text>{income.c3}</Text>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>支付宝</Text>
+                  <Text style={styles.cell}>{income.c3}</Text>
                 </View>
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>微信</Text>
-                  <Text>{income.c4}</Text>
+                <View  style={styles.oddRow}>
+                  <Text style={styles.cell}>微信</Text>
+                  <Text style={styles.cell}>{income.c4}</Text>
                 </View>
               </View>
             </View>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>合计</Text>
-              <Text>{income.c5}</Text>
+
+            <View style={{flexDirection:'row', backgroundColor:'skyblue'}}>
+              <Text style={styles.cell2}>合计</Text>
+              <Text style={styles.cell}>{income.c5}</Text>
             </View>
           </View>
         </View>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>支出</Text>
-          <View>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
+        <View style={styles.row}>
+          <View style={{flex:1, backgroundColor:'steelblue',justifyContent:'space-around'}}>
+            <Text style={{color:'white'}}>支出</Text>
+          </View>
+          <View style={{flex:3}}>
+            <View style={styles.row}>
+              <View style={{flex:1,justifyContent:'space-around'}}>
               <Text>供货商</Text>
-              <View>
-                <View>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
-                    <Text>货款</Text>
-                    <Text>{expenses.c1}</Text>
-                  </View>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
-                    <Text>其他</Text>
-                    <Text>{expenses.c2}</Text>
-                  </View>
+              </View>
+              <View style={{flex:2}}>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>货款</Text>
+                  <Text style={styles.cell}>{expenses.c1}</Text>
+                </View>
+                <View style={styles.oddRow}>
+                  <Text style={styles.cell}>其他</Text>
+                  <Text style={styles.cell}>{expenses.c2}</Text>
                 </View>
               </View>
             </View>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>联营商</Text>
-              <View>
-                <View>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
-                    <Text>分成结算</Text>
-                    <Text>{expenses.c3}</Text>
-                  </View>
-                  <View style={{flexDirection: 'row',justifyContent:'space-around',
-                  padding:4}}>
-                    <Text>其他</Text>
-                    <Text>{expenses.c4}</Text>
-                  </View>
+            <View style={styles.row}>
+              <View style={{flex:1,justifyContent:'space-around'}}>
+                <Text>联营商</Text>
+              </View>
+              <View style={{flex:2}}>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>分成结算</Text>
+                  <Text style={styles.cell}>{expenses.c3}</Text>
+                </View>
+                <View style={styles.oddRow}>
+                  <Text style={styles.cell}>其他</Text>
+                  <Text style={styles.cell}>{expenses.c4}</Text>
                 </View>
               </View>
             </View>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>合计</Text>
-              <Text>{expenses.c5}</Text>
+            <View style={{flexDirection:'row', backgroundColor:'skyblue'}}>
+              <Text style={styles.cell2}>合计</Text>
+              <Text style={styles.cell}>{expenses.c5}</Text>
             </View>
           </View>
         </View>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>净收入</Text>
-          <Text>-{netIncome}</Text>
+        <View style={styles.footRow}>
+          <Text style={styles.footCell}>净收入</Text>
+          <Text style={styles.footCell}>{netIncome}</Text>
         </View>
 
         <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
+        padding:4,backgroundColor:'powderblue'}}>
           <Text>本周预算（万）</Text>
         </View>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <View>
-            <Text>零售收入</Text>
-            <Text>{budget.c1}</Text>
-          </View>
-          <View>
-            <Text>经销商回款</Text>
-            <Text>{budget.c2}</Text>
-          </View>
-          <View>
-            <Text>供应商付款</Text>
-            <Text>{budget.c3}</Text>
-          </View>
-          <View>
-            <Text>联营分成</Text>
-            <Text>{budget.c4}</Text>
-          </View>
+        <View style={styles.headRow}>
+          <Text style={styles.headCell}>零售收入</Text>
+          <Text style={styles.headCell}>经销商回款</Text>
+          <Text style={styles.headCell}>供应商付款</Text>
+          <Text style={styles.headCell}>联营分成</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.cell}>{budget.c1}</Text>
+          <Text style={styles.cell}>{budget.c2}</Text>
+          <Text style={styles.cell}>{budget.c3}</Text>
+          <Text style={styles.cell}>{budget.c4}</Text>
         </View>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>赤字</Text>
-          <Text>-{deficit}</Text>
+        <View style={styles.row}>
+          <Text style={{flex:1,backgroundColor:'steelblue', color: 'white'}}>赤字</Text>
+          <Text style={{flex:1,backgroundColor:'red', color: 'white'}}>{deficit}</Text>
         </View>
 
         <VictoryChart

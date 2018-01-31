@@ -41,7 +41,7 @@ class SalesScreen extends React.Component {
 
 
     return (
-      <View>
+      <View style={{marginTop:10,backgroundColor:'white'}}>
         <FlatList
           data={salesInfo}
           ListHeaderComponent={() =>

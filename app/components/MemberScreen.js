@@ -49,9 +49,10 @@ class MemberScreen extends React.Component {
 
 
     return (
-      <ScrollView>
 
-        <View style={styles.firstRow}>
+      <ScrollView style={{marginTop:10,backgroundColor:'white'}}>
+
+        <View style={styles.row}>
           <Text style={styles.labelCell}>新增会员</Text>
           <Text style={styles.valueCell}>{summary.c1}</Text>
           <Text style={styles.labelCell}>会销占比</Text>
