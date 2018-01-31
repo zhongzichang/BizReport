@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList,StyleSheet,TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class PerformanceScreen extends React.Component {
@@ -36,11 +36,10 @@ class PerformanceScreen extends React.Component {
 
       <View>
 
-        <FlatList
+        <FlatList style={{marginTop:10}}
           data={performanceInfo}
-          renderItem={({item}) =>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
+          renderItem={({item,index}) =>
+            <View style={index%2 == 0 ? styles.evenRow : styles.oddRow}>
               <Text style={{flex: 1}}>{item.c1}</Text>
               <Text style={{flex: 1}}>{item.c2}</Text>
               <Text style={{flex: 1}}>{item.c3}</Text>
@@ -49,12 +48,12 @@ class PerformanceScreen extends React.Component {
             </View>}
           ListHeaderComponent={() =>
               <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4}}>
-                <Text style={{flex: 1}}>{shopInfo != null && shopInfo.name}</Text>
-                <Text style={{flex: 1}}>今天</Text>
-                <Text style={{flex: 1}}>昨天</Text>
-                <Text style={{flex: 1}}>本周</Text>
-                <Text style={{flex: 1}}>本月</Text>
+              padding:4,backgroundColor: 'steelblue'}}>
+                <Text style={styles.headCell} ellipsizeMode='head'>{shopInfo != null && shopInfo.name}</Text>
+                <Text style={styles.headCell}>今天</Text>
+                <Text style={styles.headCell}>昨天</Text>
+                <Text style={styles.headCell}>本周</Text>
+                <Text style={styles.headCell}>本月</Text>
               </View>}
           keyExtractor={(item: object, index: number) => index}
         />
@@ -65,8 +64,8 @@ class PerformanceScreen extends React.Component {
             <View style={{flex: 1, backgroundColor: 'white',
             paddingTop:30, paddingBottom:30}}>
               <Icon
-                name='sc-telegram'
-                type='evilicon'
+                name='archive'
+                type='material-community'
                 color='#517fa4'
               />
               <Button
@@ -77,8 +76,8 @@ class PerformanceScreen extends React.Component {
             <View style={{flex: 1, backgroundColor: 'white',
             paddingTop:30, paddingBottom:30, marginLeft:1, marginRight:1}}>
               <Icon
-                name='sc-telegram'
-                type='evilicon'
+                name='sale'
+                type='material-community'
                 color='#517fa4'
               />
               <Button
@@ -89,8 +88,8 @@ class PerformanceScreen extends React.Component {
             <View style={{flex: 1, backgroundColor: 'white',
             paddingTop:30, paddingBottom:30}}>
               <Icon
-                name='sc-telegram'
-                type='evilicon'
+                name='account-card-details'
+                type='material-community'
                 color='#517fa4'
               />
               <Button
@@ -101,24 +100,23 @@ class PerformanceScreen extends React.Component {
           </View>
 
           <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30, marginTop:1}}>
-              <Icon
-                name='sc-telegram'
-                type='evilicon'
-                color='#517fa4'
-              />
-              <Button
-                onPress={() => navigate('Guide', {shopInfo})}
-                title="导购"
-                style={{flex: 1}}
-              />
-            </View>
+            <TouchableOpacity onPress={() => navigate('Guide', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30, marginTop:1}}>
+                <Icon
+                  name='emoticon-happy'
+                  type='material-community'
+                  color='#517fa4'
+                />
+                <View style={styles.textView}>
+                  <Text>导购</Text>
+                </View>
+            </TouchableOpacity>
             <View style={{flex: 1, backgroundColor: 'white',
             paddingTop:30, paddingBottom:30, marginTop:1, marginLeft:1, marginRight:1}}>
               <Icon
-                name='sc-telegram'
-                type='evilicon'
+                name='local-activity'
+                type='material'
                 color='#517fa4'
               />
               <Button
@@ -130,8 +128,8 @@ class PerformanceScreen extends React.Component {
             <View style={{flex: 1, backgroundColor: 'white',
             paddingTop:30, paddingBottom:30, marginTop:1}}>
               <Icon
-                name='sc-telegram'
-                type='evilicon'
+                name='finance'
+                type='material-community'
                 color='#517fa4'
               />
               <Button
@@ -149,3 +147,22 @@ class PerformanceScreen extends React.Component {
 }
 
 export default PerformanceScreen;
+
+const styles = StyleSheet.create({
+  headCell: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    flex: 1,
+    color: 'white'
+  },
+  oddRow: {
+    flexDirection: 'row',justifyContent:'space-around', padding:4,
+    backgroundColor:'powderblue'
+  },
+  evenRow: {
+    flexDirection: 'row',justifyContent:'space-around',padding:4
+  },
+  textView: {
+    flexDirection: 'row',justifyContent:'space-around',padding:4
+  }
+});
