@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Button, FlatList, ListView } from 'react-native';
+import { View,Text, Button, FlatList, ListView,ScrollView } from 'react-native';
 import { VictoryPie,VictoryLabel,VictoryLegend } from "victory-native";
+import styles from './styles';
 
 class MemberScreen extends React.Component {
 
@@ -34,82 +35,105 @@ class MemberScreen extends React.Component {
     const {summary, data, liveness} = memberInfo;
     if (!summary || !data || !liveness)
       return null;
+    const legend = liveness.map(
+      item => {
+        return {
+          name: item.x,
+          symbol: { fill: item.fill }
+        }
+      }
+    );
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
 
 
     return (
-      <View>
+      <ScrollView>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>新增会员</Text>
-          <Text>{summary.c1}</Text>
-          <Text>会销占比</Text>
-          <Text>{summary.c2}</Text>
-          <Text>回购率</Text>
-          <Text>{summary.c3}</Text>
+        <View style={styles.firstRow}>
+          <Text style={styles.labelCell}>新增会员</Text>
+          <Text style={styles.valueCell}>{summary.c1}</Text>
+          <Text style={styles.labelCell}>会销占比</Text>
+          <Text style={styles.valueCell}>{summary.c2}</Text>
+          <Text style={styles.labelCell}>回购率</Text>
+          <Text style={styles.valueCell}>{summary.c3}</Text>
         </View>
 
         <FlatList
           data={data}
+          ListHeaderComponent={() =>
+              <View style={styles.headRow}>
+                <Text style={{color:'white'}}>生日会员</Text>
+              </View>}
+          keyExtractor={(item: object, index: number) => index}
           renderItem={({item}) =>
-          <View style={{flexDirection: 'row',justifyContent:'space-around'}}>
-            <View>
-              <Text>卡号</Text>
-              <Text>{item.cardNumber}</Text>
+          <View>
+            <View style={styles.oddRow}>
+              <Text style={styles.cell}>卡号</Text>
+              <Text style={styles.cell}>姓名</Text>
+              <Text style={styles.cell}>开卡时间</Text>
+              <Text style={styles.cell}>手机</Text>
+              <Text style={styles.cell}>积分</Text>
+              <Text style={styles.cell}>余额</Text>
             </View>
-            <View>
-              <Text>姓名</Text>
-              <Text>{item.name}</Text>
-              <Text>RFM类型</Text>
-              <Text>{item.rfmType}</Text>
-            </View>
-            <View>
-              <Text>开卡时间</Text>
-              <Text>{item.createdTime}</Text>
-              <Text>购买频率</Text>
-              <Text>{item.buyRate}</Text>
-            </View>
-            <View>
-              <Text>手机</Text>
-              <Text>{item.mobile}</Text>
-              <Text>购买金额</Text>
-              <Text>{item.buyAmount}</Text>
-            </View>
-            <View>
-              <Text>积分</Text>
-              <Text>{item.score}</Text>
-              <Text>最近日期</Text>
-              <Text>{item.lastTime}</Text>
-            </View>
-            <View>
-              <Text>余额</Text>
-              <Text>{item.balance}</Text>
-              <Text>休眠天数</Text>
-              <Text>{item.dormancyDays}</Text>
+            <View style={styles.row}>
+              <View style={{flex:1, backgroundColor:'steelblue',
+                justifyContent:'space-around'}}>
+                <Text style={{color:'white'}}>{item.cardNumber}</Text>
+              </View>
+              <View style={{flex:5}}>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>{item.name}</Text>
+                  <Text style={styles.cell}>{item.createdTime}</Text>
+                  <Text style={styles.cell}>{item.mobile}</Text>
+                  <Text style={styles.cell}>{item.score}</Text>
+                  <Text style={styles.cell}>{item.balance}</Text>
+                </View>
+                <View style={styles.oddRow}>
+                  <Text style={styles.cell}>RFM类型</Text>
+                  <Text style={styles.cell}>购买频率</Text>
+                  <Text style={styles.cell}>购买金额</Text>
+                  <Text style={styles.cell}>最近日期</Text>
+                  <Text style={styles.cell}>休眠天数</Text>
+                </View>
+                <View style={styles.evenRow}>
+                  <Text style={styles.cell}>{item.rfmType}</Text>
+                  <Text style={styles.cell}>{item.buyRate}</Text>
+                  <Text style={styles.cell}>{item.buyAmount}</Text>
+                  <Text style={styles.cell}>{item.lastTime}</Text>
+                  <Text style={styles.cell}>{item.dormancyDays}</Text>
+                </View>
+              </View>
             </View>
           </View>
           }
-          ListHeaderComponent={() =>
-              <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4}}>
-                <Text>生日会员</Text>
-              </View>}
-          keyExtractor={(item: object, index: number) => index}
         />
 
-                  <VictoryLabel x={0} y={0}
-                    text="活跃度"
-                  />
-          <VictoryPie
-            padding={{top:0,bottom:100,left:100,right:100}}
-            data={liveness}
-          >
-          </VictoryPie>
+        <View style={{flexDirection: 'row',justifyContent:'space-around',
+          backgroundColor:'white', marginTop:10}}>
+          <View style={styles.cell2}>
+            <VictoryPie
+              padding={{top:10,bottom:30,left:60,right:100}}
+              data={liveness}
+              labels={(d) => `${d.y}`}
+              width={280}
+              height={300}
+            >
+            </VictoryPie>
+          </View>
+          <View style={styles.cell}>
+            <VictoryLegend x={10} y={30}
+              gutter={30}
+              data={legend}
+              orientation="vertical"
+              title="活跃度"
+              style={{title:{fontWeight:'bold'}}}
+            />
+          </View>
+        </View>
 
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -42,7 +42,7 @@ class StockScreen extends React.Component {
 
       <View>
 
-        <View style={styles.row}>
+        <View style={styles.firstRow}>
           <Text style={styles.labelCell}>数量</Text>
           <Text style={styles.valueCell}>{summary.c1}</Text>
           <Text style={styles.labelCell}>安存量</Text>

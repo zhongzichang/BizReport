@@ -47,6 +47,10 @@ module.exports = StyleSheet.create({
     flex: 3,
     color: 'white'
   },
+  row: {flexDirection: 'row',justifyContent:'space-around'},
+  firstRow: {
+    flexDirection: 'row',justifyContent:'space-around', marginTop:10
+  },
   oddRow: {
     flexDirection: 'row',justifyContent:'space-around', padding:4,
     backgroundColor:'powderblue'
@@ -83,6 +87,5 @@ module.exports = StyleSheet.create({
     paddingLeft:2,
     paddingRight:2,
   },
-  row: {flexDirection: 'row',justifyContent:'space-around'}
 
 });

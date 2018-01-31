@@ -127,7 +127,7 @@ class PerformanceScreen extends React.Component {
                 <Text>活动</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={() => navigate('Activity', {shopInfo})}
+            <TouchableOpacity  onPress={() => navigate('Finance', {shopInfo})}
               style={{flex: 1, backgroundColor: 'white',
               paddingTop:30, paddingBottom:30, marginTop:1}}>
               <Icon
