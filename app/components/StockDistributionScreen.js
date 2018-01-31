@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
+import styles from './styles';
 
 class StockDistributionScreen extends React.Component {
 
@@ -37,19 +38,22 @@ class StockDistributionScreen extends React.Component {
     const shopInfo = state.params ? state.params.shopInfo : null;
 
     const header = {c1:'颜色',c2:'店铺',c3:'库存合计', c4:'周销量' };
+    const columnCount = 4+sizeTypes.length;
 
     return (
       <View>
 
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <Text>{header.c1}</Text>
-          <Text>{header.c2}</Text>
+        <View style={styles.headRow}>
+          <Text style={styles.headCell}>{header.c1}</Text>
+          <Text style={styles.headCell2}>{header.c2}</Text>
           {
-            sizeTypes.map((type,i) => <Text key={i}>{type}</Text>)
+            sizeTypes.map(
+              (type,i) =>
+              <Text key={i} style={styles.headCell}>{type}</Text>
+            )
           }
-          <Text>{header.c3}</Text>
-          <Text>{header.c4}</Text>
+          <Text style={styles.headCell}>{header.c3}</Text>
+          <Text style={styles.headCell}>{header.c4}</Text>
         </View>
 
         {
@@ -57,23 +61,25 @@ class StockDistributionScreen extends React.Component {
             return (
               <View key={i}>
 
-                <View style={{flexDirection: 'row',justifyContent:'space-around',
-                padding:4}}>
-                  <Text>{category.color}</Text>
-                  <View>
+                <View style={styles.row}>
+                  <View style={{flex:1, backgroundColor:'powderblue',
+                    justifyContent:'space-around'}}>
+                    <Text>
+                      {category.color}
+                    </Text>
+                  </View>
+                  <View style={{flex: (columnCount) }}>
                   {
                     category.items.map((item, i) => {
                       return (
-                        <View key={i} style={{flexDirection: 'row',
-                        justifyContent:'space-around',
-                        padding:4}}>
-                          <Text>{item.c1}</Text>
+                        <View key={i} style={i%2==0?styles.evenRow:styles.oddRow}>
+                          <Text style={styles.cell2}>{item.c1}</Text>
                           {
                             sizeTypes.map((type,i) =>
-                              <Text key={i}>{item.size[type]}</Text>)
+                              <Text key={i} style={styles.cell}>{item.size[type]}</Text>)
                           }
-                          <Text>{item.c2}</Text>
-                          <Text>{item.c3}</Text>
+                          <Text style={styles.cell}>{item.c2}</Text>
+                          <Text style={styles.cell}>{item.c3}</Text>
                         </View>
                       );
                     })
@@ -81,16 +87,14 @@ class StockDistributionScreen extends React.Component {
                   </View>
                 </View>
 
-                <View style={{flexDirection: 'row',
-                justifyContent:'space-around',
-                padding:4}}>
-                  <Text>合计</Text>
+                <View style={styles.thinFootRow}>
+                  <Text style={{flex:3}}>合计</Text>
                   {
                     sizeTypes.map((type,i) =>
-                      <Text key={i}>{category.total.size[type]}</Text>)
+                      <Text key={i} style={styles.cell}>{category.total.size[type]}</Text>)
                   }
-                  <Text>{category.total.c1}</Text>
-                  <Text>{category.total.c2}</Text>
+                  <Text style={styles.cell}>{category.total.c1}</Text>
+                  <Text style={styles.cell}>{category.total.c2}</Text>
                 </View>
 
               </View>
@@ -98,15 +102,14 @@ class StockDistributionScreen extends React.Component {
           })
         }
 
-        <View style={{flexDirection: 'row',
-        justifyContent:'space-around',
-        padding:4}}>
+        <View style={styles.footRow}>
+          <Text style={styles.footCell3}></Text>
           {
             sizeTypes.map((type,i) =>
-              <Text key={i}>{dataOfTotal.size[type]}</Text>)
+              <Text key={i} style={styles.footCell}>{dataOfTotal.size[type]}</Text>)
           }
-          <Text>{dataOfTotal.c1}</Text>
-          <Text>{dataOfTotal.c2}</Text>
+          <Text style={styles.footCell}>{dataOfTotal.c1}</Text>
+          <Text style={styles.footCell}>{dataOfTotal.c2}</Text>
         </View>
 
       </View>

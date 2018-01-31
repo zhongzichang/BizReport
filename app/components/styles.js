@@ -16,13 +16,35 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',justifyContent:'space-around',
     padding:4,backgroundColor: 'steelblue'
   },
+  thinFootRow: {
+    flexDirection: 'row',justifyContent:'space-around',
+    padding:4,backgroundColor: 'skyblue'
+  },
   headCell: {
     fontWeight: 'bold',
     flex: 1,
     color: 'white'
   },
+  headCell2: {
+    fontWeight: 'bold',
+    flex: 2,
+    color: 'white'
+  },
+  headCell3: {
+    fontWeight: 'bold',
+    flex: 3,
+    color: 'white'
+  },
   footCell: {
     flex: 1,
+    color: 'white'
+  },
+  footCell2: {
+    flex: 2,
+    color: 'white'
+  },
+  footCell3: {
+    flex: 3,
     color: 'white'
   },
   oddRow: {
@@ -35,6 +57,12 @@ module.exports = StyleSheet.create({
   },
   cell: {
     flex: 1
+  },
+  cell2: {
+    flex: 2
+  },
+  cell3: {
+    flex: 3
   },
   textView: {
     flexDirection: 'row',justifyContent:'space-around',padding:4
