@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, FlatList,StyleSheet,TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import styles from './styles';
 
 class PerformanceScreen extends React.Component {
 
@@ -36,26 +37,27 @@ class PerformanceScreen extends React.Component {
 
       <View>
 
-        <FlatList style={{marginTop:10}}
+        <FlatList style={{marginTop:10,backgroundColor:'white'}}
           data={performanceInfo}
-          renderItem={({item,index}) =>
-            <View style={index%2 == 0 ? styles.evenRow : styles.oddRow}>
-              <Text style={{flex: 1}}>{item.c1}</Text>
-              <Text style={{flex: 1}}>{item.c2}</Text>
-              <Text style={{flex: 1}}>{item.c3}</Text>
-              <Text style={{flex: 1}}>{item.c4}</Text>
-              <Text style={{flex: 1}}>{item.c5}</Text>
-            </View>}
           ListHeaderComponent={() =>
-              <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4,backgroundColor: 'steelblue'}}>
-                <Text style={styles.headCell} ellipsizeMode='head'>{shopInfo != null && shopInfo.name}</Text>
+              <View style={styles.headRow}>
+                <Text style={styles.headCell} ellipsizeMode='head'>
+                  {shopInfo != null && shopInfo.name}
+                </Text>
                 <Text style={styles.headCell}>今天</Text>
                 <Text style={styles.headCell}>昨天</Text>
                 <Text style={styles.headCell}>本周</Text>
                 <Text style={styles.headCell}>本月</Text>
               </View>}
           keyExtractor={(item: object, index: number) => index}
+          renderItem={({item,index}) =>
+            <View style={index%2 == 0 ? styles.evenRow : styles.oddRow}>
+              <Text style={styles.cell}>{item.c1}</Text>
+              <Text style={styles.cell}>{item.c2}</Text>
+              <Text style={styles.cell}>{item.c3}</Text>
+              <Text style={styles.cell}>{item.c4}</Text>
+              <Text style={styles.cell}>{item.c5}</Text>
+            </View>}
         />
 
         <View style={{marginTop: 30}}>
@@ -147,21 +149,3 @@ class PerformanceScreen extends React.Component {
 }
 
 export default PerformanceScreen;
-
-const styles = StyleSheet.create({
-  headCell: {
-    fontWeight: 'bold',
-    flex: 1,
-    color: 'white'
-  },
-  oddRow: {
-    flexDirection: 'row',justifyContent:'space-around', padding:4,
-    backgroundColor:'powderblue'
-  },
-  evenRow: {
-    flexDirection: 'row',justifyContent:'space-around',padding:4
-  },
-  textView: {
-    flexDirection: 'row',justifyContent:'space-around',padding:4
-  }
-});
