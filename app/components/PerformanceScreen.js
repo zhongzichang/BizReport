@@ -61,42 +61,43 @@ class PerformanceScreen extends React.Component {
         <View style={{marginTop: 30}}>
 
           <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30}}>
+            <TouchableOpacity onPress={() => navigate('Stock', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30}}>
               <Icon
                 name='archive'
                 type='material-community'
                 color='#517fa4'
               />
-              <Button
-                onPress={() => navigate('Stock', {shopInfo})}
-                title="库存"
-              />
-            </View>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30, marginLeft:1, marginRight:1}}>
+              <View style={styles.textView}>
+                <Text>库存</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate('Sales', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30, marginLeft:1, marginRight:1}}>
               <Icon
                 name='sale'
                 type='material-community'
                 color='#517fa4'
               />
-              <Button
-                onPress={() => navigate('Sales', {shopInfo})}
-                title="畅滞销"
-              />
-            </View>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30}}>
+              <View style={styles.textView}>
+                <Text>畅滞销</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate('Member', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30}}>
               <Icon
                 name='account-card-details'
                 type='material-community'
                 color='#517fa4'
               />
-              <Button
-              onPress={() => navigate('Member', {shopInfo})}
-              title="会员"
-              />
-            </View>
+              <View style={styles.textView}>
+                <Text>会员</Text>
+              </View>
+            </TouchableOpacity>
+
           </View>
 
           <View style={{flexDirection:'row',justifyContent:'space-around'}}>
@@ -112,32 +113,31 @@ class PerformanceScreen extends React.Component {
                   <Text>导购</Text>
                 </View>
             </TouchableOpacity>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30, marginTop:1, marginLeft:1, marginRight:1}}>
+            <TouchableOpacity  onPress={() => navigate('Activity', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30, marginTop:1, marginLeft:1, marginRight:1}}>
               <Icon
                 name='local-activity'
                 type='material'
                 color='#517fa4'
               />
-              <Button
-                onPress={() => navigate('Activity', {shopInfo})}
-                title="活动"
-                style={{flex: 1}}
-              />
-            </View>
-            <View style={{flex: 1, backgroundColor: 'white',
-            paddingTop:30, paddingBottom:30, marginTop:1}}>
+              <View style={styles.textView}>
+                <Text>活动</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity  onPress={() => navigate('Activity', {shopInfo})}
+              style={{flex: 1, backgroundColor: 'white',
+              paddingTop:30, paddingBottom:30, marginTop:1}}>
               <Icon
                 name='finance'
                 type='material-community'
                 color='#517fa4'
               />
-              <Button
-                onPress={() => navigate('Finance', {shopInfo})}
-                title="财务"
-                style={{flex: 1}}
-              />
-            </View>
+              <View style={styles.textView}>
+                <Text>财务</Text>
+              </View>
+            </TouchableOpacity>
+
           </View>
         </View>
 
@@ -150,7 +150,6 @@ export default PerformanceScreen;
 
 const styles = StyleSheet.create({
   headCell: {
-    fontSize: 14,
     fontWeight: 'bold',
     flex: 1,
     color: 'white'
