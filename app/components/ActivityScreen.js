@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
 import { VictoryPie, VictoryLegend } from "victory-native";
+import styles from './styles';
 
 class ActivityScreen extends React.Component {
 
@@ -52,77 +53,73 @@ class ActivityScreen extends React.Component {
 
         <FlatList
           data={data}
-          renderItem={({item}) =>
-            <View style={{flexDirection: 'row',justifyContent:'space-around',
-            padding:4}}>
-              <Text>{item.c1}</Text>
-              <Text>{item.c2}</Text>
-              <Text>{item.c3}</Text>
-              <Text>{item.c4}</Text>
-            </View>
-          }
           ListHeaderComponent={() =>
-              <View style={{flexDirection: 'row',justifyContent:'space-around',
-              padding:4}}>
-                <Text>序号</Text>
-                <Text>活动名称</Text>
-                <Text>开始时间</Text>
-                <Text>结束时间</Text>
+              <View style={styles.headRow}>
+                <Text style={styles.headCell}>序号</Text>
+                <Text style={styles.headCell3}>活动名称</Text>
+                <Text style={styles.headCell}>开始时间</Text>
+                <Text style={styles.headCell}>结束时间</Text>
               </View>}
           keyExtractor={(item: object, index: number) => index}
+          renderItem={({item,index}) =>
+            <View style={index%2==0?styles.evenRow:styles.oddRow}>
+              <Text style={styles.cell}>{item.c1}</Text>
+              <Text style={styles.cell3}>{item.c2}</Text>
+              <Text style={styles.cell}>{item.c3}</Text>
+              <Text style={styles.cell}>{item.c4}</Text>
+            </View>
+          }
         />
 
+        <View style={styles.headRow}>
+          <Text style={styles.headCell}>业绩（前）</Text>
+          <Text style={styles.headCell}>业绩（后）</Text>
+          <Text style={styles.headCell}>环比</Text>
+          <Text style={styles.headCell}>折扣</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.cell}>{summary.c1}</Text>
+          <Text style={styles.cell}>{summary.c2}</Text>
+          <Text style={styles.cell}>{summary.c3}</Text>
+          <Text style={styles.cell}>{summary.c4}</Text>
+        </View>
+
+        <View style={styles.headRow}>
+          <Text style={styles.headCell}>售罄（前）</Text>
+          <Text style={styles.headCell}>售罄（后）</Text>
+          <Text style={styles.headCell}>涨幅</Text>
+          <Text style={styles.headCell}>毛利率</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.cell}>{summary.c5}</Text>
+          <Text style={styles.cell}>{summary.c6}</Text>
+          <Text style={styles.cell}>{summary.c7}</Text>
+          <Text style={styles.cell}>{summary.c8}</Text>
+        </View>
+
         <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <View>
-            <Text>业绩（前）</Text>
-            <Text>{summary.c1}</Text>
+          backgroundColor:'white', marginTop:10}}>
+          <View style={styles.cell2}>
+            <VictoryPie
+              padding={{top:10,bottom:30,left:60,right:100}}
+              data={pie}
+              labels={(d) => `${d.y}`}
+              width={280}
+              height={300}
+            >
+            </VictoryPie>
           </View>
-          <View>
-            <Text>业绩（后）</Text>
-            <Text>{summary.c2}</Text>
-          </View>
-          <View>
-            <Text>环比</Text>
-            <Text>{summary.c3}</Text>
-          </View>
-          <View>
-            <Text>折扣</Text>
-            <Text>{summary.c4}</Text>
+          <View style={styles.cell}>
+            <VictoryLegend x={10} y={30}
+              gutter={30}
+              data={legend}
+              orientation="vertical"
+              title="标题"
+              style={{title:{fontWeight:'bold'}}}
+            />
           </View>
         </View>
 
-
-        <View style={{flexDirection: 'row',justifyContent:'space-around',
-        padding:4}}>
-          <View>
-            <Text>售罄（前）</Text>
-            <Text>{summary.c5}</Text>
-          </View>
-          <View>
-            <Text>售罄（后）</Text>
-            <Text>{summary.c6}</Text>
-          </View>
-          <View>
-            <Text>涨幅</Text>
-            <Text>{summary.c7}</Text>
-          </View>
-          <View>
-            <Text>毛利率</Text>
-            <Text>{summary.c8}</Text>
-          </View>
-        </View>
-
-        <VictoryLegend x={125} y={50} height={100}
-          orientation="horizontal"
-          gutter={20}
-          style={{ border: { stroke: "black" } }}
-          data={legend}
-        />
-          <VictoryPie
-            padding={{top:0,bottom:100,left:100,right:100}}
-            data={pie}
-          />
       </View>
     );
   }
