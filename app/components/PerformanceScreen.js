@@ -35,7 +35,7 @@ class PerformanceScreen extends React.Component {
 
     return (
 
-      <View style={{marginTop:10,backgroundColor:'white'}}>
+      <View style={{marginTop:10}}>
 
         <FlatList
           data={performanceInfo}

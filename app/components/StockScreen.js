@@ -40,9 +40,9 @@ class StockScreen extends React.Component {
 
     return (
 
-      <View>
+      <View style={{marginTop:10}}>
 
-        <View style={styles.firstRow}>
+        <View style={styles.row}>
           <Text style={styles.labelCell}>数量</Text>
           <Text style={styles.valueCell}>{summary.c1}</Text>
           <Text style={styles.labelCell}>安存量</Text>

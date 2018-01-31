@@ -50,7 +50,7 @@ class MemberScreen extends React.Component {
 
     return (
 
-      <ScrollView style={{marginTop:10,backgroundColor:'white'}}>
+      <ScrollView style={{marginTop:10}}>
 
         <View style={styles.row}>
           <Text style={styles.labelCell}>新增会员</Text>

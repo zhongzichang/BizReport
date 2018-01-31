@@ -41,7 +41,7 @@ class StockDistributionScreen extends React.Component {
     const columnCount = 4+sizeTypes.length;
 
     return (
-      <View style={{marginTop:10,backgroundColor:'white'}}>
+      <View style={{marginTop:10}}>
 
         <View style={styles.headRow}>
           <Text style={styles.headCell}>{header.c1}</Text>

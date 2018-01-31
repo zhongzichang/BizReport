@@ -41,7 +41,7 @@ class FinanceScreen extends React.Component {
     return (
       <View>
 
-      <ScrollView style={{marginTop:10,backgroundColor:'white'}}>
+      <ScrollView style={{marginTop:10}}>
 
         <View style={styles.row}>
           <View style={{flex:1, backgroundColor:'steelblue',justifyContent:'space-around'}}>
@@ -50,7 +50,7 @@ class FinanceScreen extends React.Component {
           <View style={{flex:3}}>
 
             <View style={styles.row}>
-              <View style={{flex:1,justifyContent:'space-around'}}>
+              <View style={{flex:1,justifyContent:'space-around', backgroundColor:'white'}}>
                 <Text>零售</Text>
               </View>
               <View style={{flex:2}}>
@@ -86,8 +86,8 @@ class FinanceScreen extends React.Component {
           </View>
           <View style={{flex:3}}>
             <View style={styles.row}>
-              <View style={{flex:1,justifyContent:'space-around'}}>
-              <Text>供货商</Text>
+              <View style={{flex:1,justifyContent:'space-around', backgroundColor:'white'}}>
+                <Text>供货商</Text>
               </View>
               <View style={{flex:2}}>
                 <View style={styles.evenRow}>
@@ -101,7 +101,7 @@ class FinanceScreen extends React.Component {
               </View>
             </View>
             <View style={styles.row}>
-              <View style={{flex:1,justifyContent:'space-around'}}>
+              <View style={{flex:1,justifyContent:'space-around', backgroundColor:'white'}}>
                 <Text>联营商</Text>
               </View>
               <View style={{flex:2}}>
