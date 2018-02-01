@@ -8,7 +8,7 @@ import {FETCH_LOGIN_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchLoginData = (username, password) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return postData(config.API_URL_LOGIN, { username: username, password: password})
+    postData(config.API_URL_LOGIN, { username: username, password: password})
       .then((data) => dispatch(
         fetchLoginDataSuccess(data))
       )

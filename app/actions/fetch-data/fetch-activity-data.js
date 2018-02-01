@@ -8,7 +8,7 @@ import {FETCH_ACTIVITY_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchActivityData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_ACTIVITY)
+    getData(config.API_URL_ACTIVITY)
       .then(
         (data) => dispatch(
           fetchActivityDataSuccess(data)

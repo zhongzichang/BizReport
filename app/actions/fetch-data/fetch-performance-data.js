@@ -8,7 +8,7 @@ import {FETCH_PERFORMANCE_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchPerformanceData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_PERFORMANCE)
+    getData(config.API_URL_PERFORMANCE)
       .then((data) => dispatch(fetchPerformanceDataSuccess(data)))
       .catch((err) => dispatch(fetchDataError(err)));
   }

@@ -8,7 +8,7 @@ import {FETCH_FINANCE_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchFinanceData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_FINANCE)
+    getData(config.API_URL_FINANCE)
       .then(
         (data) => dispatch(
           fetchFinanceDataSuccess(data)

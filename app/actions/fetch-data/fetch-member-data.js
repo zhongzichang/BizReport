@@ -8,7 +8,7 @@ import {FETCH_MEMBER_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchMemberData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_MEMBER)
+    getData(config.API_URL_MEMBER)
       .then(
         (data) => dispatch(
           fetchMemberDataSuccess(data)

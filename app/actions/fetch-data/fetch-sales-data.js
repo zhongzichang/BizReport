@@ -8,7 +8,7 @@ import {FETCH_SALES_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchSalesData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_SALES)
+    getData(config.API_URL_SALES)
       .then(
         (data) => dispatch(
           fetchSalesDataSuccess(data)

@@ -8,7 +8,7 @@ import {FETCH_SHOPS_DATA_SUCCESS} from '../../constants/action-names';
 export const fetchShopsData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_SHOPS)
+    getData(config.API_URL_SHOPS)
       .then(
         (data) => dispatch(
           fetchShopsDataSuccess(data)

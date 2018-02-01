@@ -8,7 +8,7 @@ import {FETCH_STOCK_DISTRIBUTION_DATA_SUCCESS} from '../../constants/action-name
 export const fetchStockDistributionData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    return getData(config.API_URL_STOCK_DISTRIBUTION)
+    getData(config.API_URL_STOCK_DISTRIBUTION)
       .then(
         (data) => dispatch(
           fetchStockDistributionDataSuccess(data)

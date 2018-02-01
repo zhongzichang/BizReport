@@ -78,7 +78,7 @@ class ActivityScreen extends React.Component {
           <Text style={styles.headCell}>环比</Text>
           <Text style={styles.headCell}>折扣</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.evenRow}>
           <Text style={styles.cell}>{summary.c1}</Text>
           <Text style={styles.cell}>{summary.c2}</Text>
           <Text style={styles.cell}>{summary.c3}</Text>
@@ -91,7 +91,7 @@ class ActivityScreen extends React.Component {
           <Text style={styles.headCell}>涨幅</Text>
           <Text style={styles.headCell}>毛利率</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.evenRow}>
           <Text style={styles.cell}>{summary.c5}</Text>
           <Text style={styles.cell}>{summary.c6}</Text>
           <Text style={styles.cell}>{summary.c7}</Text>
