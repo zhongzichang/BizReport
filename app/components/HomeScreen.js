@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import {Button, List, ListItem} from 'react-native-elements';
-import LoginModal from './LoginModal';
 
 class HomeScreen extends React.Component {
 
@@ -12,9 +11,6 @@ class HomeScreen extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      logined: false,
-    };
   }
 
   componentWillUnmount() {
@@ -23,7 +19,6 @@ class HomeScreen extends React.Component {
 
   componentDidMount(){
     this.props.fetchShopsData();
-    this.props.fetchLoginData('abc','123');
   }
 
   componentWillUnmount() {
@@ -33,7 +28,6 @@ class HomeScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
     const shopsInfo = this.props.shopsInfo;
-    const loginInfo = this.props.loginInfo;
 
     return (
 
@@ -59,10 +53,6 @@ class HomeScreen extends React.Component {
           icon={{name: 'squirrel', type: 'octicon' }}
           title='退出'
           backgroundColor='#4736C9' />
-
-        {loginInfo != null && loginInfo.success != 0 &&
-        <LoginModal loginInfo={loginInfo}/>
-        }
 
       </View>
 

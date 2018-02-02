@@ -18,13 +18,13 @@ export default class LoginModal extends Component {
 
   render() {
 
-    const loginInfo = this.props.loginInfo;
+    const login = this.props.login;
 
     return (
 
         <View style={styles.container}>
           <Modal
-              visible={loginInfo.success != 0}
+              visible={this.state.modalVisible}
               animationType={'slide'}
               onRequestClose={() => this.closeModal()}
           >
@@ -32,7 +32,7 @@ export default class LoginModal extends Component {
               <View style={styles.innerContainer}>
                 <TextInput value="用户名"/>
                 <TextInput value="密码"/>
-                <Button title="登录" />
+                <Button title="登录" onPress={login('abc','123')} />
               </View>
             </View>
           </Modal>
