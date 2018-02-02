@@ -6,6 +6,8 @@ export default class LoginModal extends Component {
 
   state = {
     modalVisible: true,
+    username: '用户名',
+    password: '密码'
   };
 
   openModal() {
@@ -18,8 +20,6 @@ export default class LoginModal extends Component {
 
   render() {
 
-    const login = this.props.login;
-
     return (
 
         <View style={styles.container}>
@@ -30,9 +30,13 @@ export default class LoginModal extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
-                <TextInput value="用户名"/>
-                <TextInput value="密码"/>
-                <Button title="登录" onPress={login('abc','123')} />
+                <TextInput
+                  onChangeText={(username) => this.setState({username})}
+                  value={this.state.username} />
+                <TextInput
+                  onChangeText={(password) => this.setState({password})}
+                value={this.state.password}/>
+                <Button title="登录" onPress={()=>this.props.login('abc','123')} />
               </View>
             </View>
           </Modal>

@@ -1,4 +1,3 @@
-import storage from './storage';
 import global from './global';
 import config from '../lib/config';
 
@@ -25,7 +24,7 @@ export async function getData(url){
     if( accessToken ){
       // save it
       global.accessToken = accessToken;
-      storage.save({key:ccs.ACCESS_TOKEN,data:accessToken});
+      global.storage.save({key:ccs.ACCESS_TOKEN,data:accessToken});
     }
     console.info(response);
     let responseJson = await response.json();
@@ -51,7 +50,7 @@ export async function postData(url, data) {
     if( accessToken ){
       // save it
       global.accessToken = accessToken;
-      storage.save({key:config.ACCESS_TOKEN,data:accessToken});
+      global.storage.save({key:config.ACCESS_TOKEN,data:accessToken});
     }
     let responseJson = await response.json();
     return responseJson;

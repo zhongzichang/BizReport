@@ -15,6 +15,8 @@ import FinanceContainer from '../containers/finance-container';
 import StockDistributionContainer from
   '../containers/stock-distribution-container';
 
+import init from '../services/init';
+
 const BizReportNavigator = StackNavigator({
   Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
@@ -39,6 +41,7 @@ class RootScreen extends React.Component {
 
   componentDidMount(){
     //this.props.fetchLoginData('abc','123');
+    init();
   }
 
   componentWillUnmount() {
