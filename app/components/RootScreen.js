@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList,ActivityIndicator,StyleSheet } from 'react-native';
 import {Button, List, ListItem} from 'react-native-elements';
 import LoginModal from './LoginModal';
 
@@ -40,7 +40,6 @@ class RootScreen extends React.Component {
   }
 
   componentDidMount(){
-    //this.props.fetchLoginData('abc','123');
     init();
   }
 
@@ -50,13 +49,36 @@ class RootScreen extends React.Component {
   render() {
 
     const loginInfo = this.props.loginInfo;
+    const inited = this.props.initedInfo;
 
-    if(loginInfo == null || loginInfo.success != 0) {
-      return <LoginModal loginInfo={loginInfo} login={this.props.fetchLoginData} />
+    if( inited ){
+
+      if(loginInfo == null || loginInfo.success != 0) {
+        return <LoginModal loginInfo={loginInfo} login={this.props.fetchLoginData} />
+      } else {
+        return <BizReportNavigator />
+      }
+
     } else {
-      return <BizReportNavigator />
+
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     }
   }
 }
 
 export default RootScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
+  }
+})
