@@ -1,1 +1,4 @@
-export default {accessToken:null};
+export default {
+  accessToken : null,
+  storage : null,
+};

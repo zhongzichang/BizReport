@@ -52,7 +52,7 @@ class HomeScreen extends React.Component {
         <Button
           icon={{name: 'squirrel', type: 'octicon' }}
           title='退出'
-          backgroundColor='#4736C9' />
+          backgroundColor='#4736C9' onPress={()=>this.props.fetchLogoutData()} />
 
       </View>
 

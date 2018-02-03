@@ -18,17 +18,15 @@ export async function makeInit(){
   await storage.load({
     	key: config.ACCESS_TOKEN,
     }).then(ret => {
-    	console.log(data);
       global.accessToken = data;
     }).catch(err => {
-    	console.warn(err.message);
     	switch (err.name) {
     	    case 'NotFoundError':
     	        // TODO;
     	        break;
-            case 'ExpiredError':
-                // TODO
-                break;
+          case 'ExpiredError':
+              // TODO
+              break;
     	}
     });
 }

@@ -10,6 +10,7 @@ import guideReducer from './guide-reducer';
 import activityReducer from './activity-reducer';
 import financeReducer from './finance-reducer';
 import initAppReducer from './init-app-reducer';
+import logoutReducer from './logout-reducer';
 
 // Root Reducer
 const rootReducer = combineReducers({
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   activity : activityReducer,
   finance : financeReducer,
   initApp : initAppReducer,
+  logout : logoutReducer,
 });
 
 export default rootReducer;

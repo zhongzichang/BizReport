@@ -4,6 +4,7 @@ import {getShopsSelector} from '../reducers/shops-reducer';
 import {getLoginSelector} from '../reducers/login-reducer';
 import {fetchShopsData} from '../actions/fetch-data/fetch-shops-data';
 import {fetchLoginData} from '../actions/fetch-data/fetch-login-data';
+import {fetchLogoutData} from '../actions/fetch-data/fetch-logout-data';
 
 const mapStateToProps = (state : Object) => {
     return getShopsSelector(state);
@@ -11,6 +12,7 @@ const mapStateToProps = (state : Object) => {
 const mapDispatchToProps = (dispatch : Function) => (
   {
     fetchShopsData: () => dispatch(fetchShopsData()),
+    fetchLogoutData: () => dispatch(fetchLogoutData()),
   }
 );
 

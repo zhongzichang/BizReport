@@ -15,6 +15,8 @@ import FinanceContainer from '../containers/finance-container';
 import StockDistributionContainer from
   '../containers/stock-distribution-container';
 
+import global from '../services/global';
+
 const BizReportNavigator = StackNavigator({
   Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
@@ -48,12 +50,13 @@ class RootScreen extends React.Component {
 
     const loginInfo = this.props.loginInfo;
     const initAppInfo = this.props.initAppInfo;
+    const logoutInfo = this.props.logoutInfo;
 
     console.info(this.props);
 
     if(initAppInfo && initAppInfo.completed ){
       // 已完成初始化
-      if(loginInfo == null || loginInfo.success != 0) {
+      if(global.accessToken == null) {
         return <LoginModal loginInfo={loginInfo} login={this.props.fetchLoginData} />
       } else {
         return <BizReportNavigator />
