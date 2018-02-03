@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Modal, StyleSheet, TextInput } from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button,FormLabel, FormInput} from 'react-native-elements';
 
 export default class LoginModal extends Component {
 
   state = {
-    modalVisible: true,
-    username: '用户名',
-    password: '密码'
+    modalVisible: true
   };
 
   openModal() {
@@ -26,17 +24,34 @@ export default class LoginModal extends Component {
           <Modal
               visible={this.state.modalVisible}
               animationType={'slide'}
-              onRequestClose={() => this.closeModal()}
+              onRequestClose={() => {}}
           >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
-                <TextInput
+
+                <FormInput placeholder='用户名'
+                  ref={input => this.usernameInput=input}
                   onChangeText={(username) => this.setState({username})}
-                  value={this.state.username} />
-                <TextInput
+                  value={this.state.username}
+                  />
+
+                <FormInput
+                  ref={input => this.passwordInput=input}
+                  style={styles.passwordInput}
+                  secureTextEntry placeholder='密码'
                   onChangeText={(password) => this.setState({password})}
-                value={this.state.password}/>
-                <Button title="登录" onPress={()=>this.props.login('abc','123')} />
+                  value={this.state.password}
+                  />
+
+                <Button
+                  style={styles.loginButton}
+                  backgroundColor='green'
+                  title="登录"
+                  onPress={()=>
+                    this.props.login(this.state.username,
+                      this.state.password)} />
+
+
               </View>
             </View>
           </Modal>
@@ -55,19 +70,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
   },
-  innerContainer: {
-    alignItems: 'center',
+  usernameInput:{
+    marginTop: 30,
   },
-  textfield: {
-    height: 28,  // have to do it on iOS
-    width: 200,
-    marginTop: 20,
+  passwordInput:{
+    marginTop: 30,
   },
-  textfieldWithFloatingLabel: {
-    height: 48,  // have to do it on iOS
-    marginTop: 20,
+  loginButton:{
+    marginTop: 30,
+    backgroundColor: 'green',
   },
-  loginButton: {
-    marginTop: 20,
-  }
 });
