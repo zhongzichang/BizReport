@@ -9,6 +9,7 @@ import memberReducer from './member-reducer';
 import guideReducer from './guide-reducer';
 import activityReducer from './activity-reducer';
 import financeReducer from './finance-reducer';
+import initAppReducer from './init-app-reducer';
 
 // Root Reducer
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   guide : guideReducer,
   activity : activityReducer,
   finance : financeReducer,
+  initApp : initAppReducer,
 });
 
 export default rootReducer;

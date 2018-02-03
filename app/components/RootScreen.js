@@ -15,8 +15,6 @@ import FinanceContainer from '../containers/finance-container';
 import StockDistributionContainer from
   '../containers/stock-distribution-container';
 
-import init from '../services/init';
-
 const BizReportNavigator = StackNavigator({
   Home: { screen: HomeContainer },
   Performance: { screen: PerformanceContainer },
@@ -40,7 +38,7 @@ class RootScreen extends React.Component {
   }
 
   componentDidMount(){
-    init();
+    this.props.initApp();
   }
 
   componentWillUnmount() {
@@ -49,10 +47,12 @@ class RootScreen extends React.Component {
   render() {
 
     const loginInfo = this.props.loginInfo;
-    const inited = this.props.initedInfo;
+    const initAppInfo = this.props.initAppInfo;
 
-    if( inited ){
+    console.info(this.props);
 
+    if(initAppInfo && initAppInfo.completed ){
+      // 已完成初始化
       if(loginInfo == null || loginInfo.success != 0) {
         return <LoginModal loginInfo={loginInfo} login={this.props.fetchLoginData} />
       } else {
