@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList,StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, Button, FlatList,
+  StyleSheet,TouchableOpacity,RefreshControl } from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from './styles';
 
@@ -9,16 +10,23 @@ class PerformanceScreen extends React.Component {
     title: '业绩'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchPerformanceData();
+  }
+
   constructor(props) {
     super(props);
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchPerformanceData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -29,6 +37,9 @@ class PerformanceScreen extends React.Component {
     const performanceInfo = this.props.performanceInfo;
     if (performanceInfo == null)
       return null;
+    else {
+      this.refreshing = false;
+    }
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
@@ -58,6 +69,12 @@ class PerformanceScreen extends React.Component {
               <Text style={styles.cell}>{item.c4}</Text>
               <Text style={styles.cell}>{item.c5}</Text>
             </View>}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
         />
 
         <View style={{marginTop: 30}}>

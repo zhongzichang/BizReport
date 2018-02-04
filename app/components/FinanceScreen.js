@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList, ScrollView } from 'react-native';
+import { View, Text, Button, FlatList,
+  ScrollView,RefreshControl } from 'react-native';
 import { VictoryBar, VictoryChart, VictoryTheme,VictoryLabel } from "victory-native";
 import styles from './styles';
 
@@ -9,15 +10,22 @@ class FinanceScreen extends React.Component {
     title: '财务'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchFinanceData();
+  }
+
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
   }
 
   componentDidMount(){
-    this.props.fetchFinanceData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -30,6 +38,9 @@ class FinanceScreen extends React.Component {
     const financeInfo = this.props.financeInfo;
     if( !financeInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
     const {income, expenses, netIncome,
       budget, deficit, incomeBar} = financeInfo;
     if (!income || !expenses || !netIncome || !budget || !deficit || !incomeBar)
@@ -39,9 +50,17 @@ class FinanceScreen extends React.Component {
     const shopInfo = state.params ? state.params.shopInfo : null;
 
     return (
-      <View>
 
-      <ScrollView style={{marginTop:10}}>
+      <View style={{marginTop:10}}>
+
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
+      >
 
         <View style={styles.row}>
           <View style={{flex:1, backgroundColor:'steelblue',justifyContent:'space-around'}}>

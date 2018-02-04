@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList,ScrollView,TouchableOpacity } from 'react-native';
+import { View, Text, Button, FlatList,
+  ScrollView,TouchableOpacity,RefreshControl } from 'react-native';
 import { VictoryChart, VictoryBar,
   VictoryTheme, VictoryPolarAxis,
   VictoryStack, VictoryAxis, VictoryArea } from "victory-native";
@@ -14,16 +15,23 @@ class GuideScreen extends React.Component {
     title: '导购'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchGuideData();
+  }
+
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchGuideData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -48,6 +56,10 @@ class GuideScreen extends React.Component {
     const guideInfo = this.props.guideInfo;
     if( !guideInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
+
     const {data, total} = guideInfo;
     if (!data || !total)
       return null;
@@ -128,6 +140,12 @@ class GuideScreen extends React.Component {
                     <Text style={styles.footCell}>{total.c8}</Text>
                     <Text style={styles.footCell}>{total.c9}</Text>
                   </View>}
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.refreshing}
+                  onRefresh={this._onRefresh.bind(this)}
+                />
+              }
             />
 
           </View>

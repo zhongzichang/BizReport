@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,Text, Button, FlatList, ListView,ScrollView } from 'react-native';
+import { View,Text, Button, FlatList, ListView,ScrollView,RefreshControl } from 'react-native';
 import { VictoryPie,VictoryLabel,VictoryLegend } from "victory-native";
 import styles from './styles';
 
@@ -9,16 +9,23 @@ class MemberScreen extends React.Component {
     title: '会员'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchMemberData();
+  }
+
   constructor(props) {
     super(props);
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchMemberData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -30,11 +37,17 @@ class MemberScreen extends React.Component {
     console.info(this.props.memberInfo);
 
     const memberInfo = this.props.memberInfo;
+
     if( !memberInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
+
     const {summary, data, liveness} = memberInfo;
     if (!summary || !data || !liveness)
       return null;
+
     const legend = liveness.map(
       item => {
         return {
@@ -50,7 +63,16 @@ class MemberScreen extends React.Component {
 
     return (
 
-      <ScrollView style={{marginTop:10}}>
+      <View style={{marginTop:10}}>
+
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
+      >
 
         <View style={styles.row}>
           <Text style={styles.labelCell}>新增会员</Text>
@@ -135,6 +157,8 @@ class MemberScreen extends React.Component {
         </View>
 
       </ScrollView>
+
+      </View>
     );
   }
 }

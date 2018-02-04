@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList,RefreshControl } from 'react-native';
 import styles from './styles';
 
 class StockScreen extends React.Component {
@@ -8,16 +8,22 @@ class StockScreen extends React.Component {
     title: '库存'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchStockData();
+  }
+
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
-
+  componentWillMount() {
   }
 
   componentDidMount(){
-    this.props.fetchStockData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -31,6 +37,9 @@ class StockScreen extends React.Component {
     const stockInfo = this.props.stockInfo;
     if( !stockInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
     const {summary, dataWithCategory, dataWithSeason, total} = stockInfo;
     if (!summary || !dataWithCategory || !dataWithSeason || !total)
       return null;
@@ -83,6 +92,12 @@ class StockScreen extends React.Component {
               <Text style={styles.cell}>{item.c6}</Text>
               <Text style={styles.cell}>{item.c7}</Text>
             </View>}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
         />
 
         <FlatList

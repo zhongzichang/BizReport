@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ScrollView,RefreshControl } from 'react-native';
 import {Button, List, ListItem} from 'react-native-elements';
 
 class HomeScreen extends React.Component {
@@ -8,17 +8,22 @@ class HomeScreen extends React.Component {
     title: '首页'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchShopsData();
+  }
 
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
-
+  componentWillMount() {
   }
 
   componentDidMount(){
-    this.props.fetchShopsData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -28,10 +33,23 @@ class HomeScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
     const shopsInfo = this.props.shopsInfo;
+    if( !shopsInfo ){
+      return null;
+    } else {
+      this.refreshing = false;
+    }
 
     return (
 
-      <View>
+      <View style={{marginTop:10}}>
+
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }>
 
         {shopsInfo != null && shopsInfo.length > 0 &&
           <List containerStyle={{marginBottom: 20}}>
@@ -50,10 +68,13 @@ class HomeScreen extends React.Component {
         }
 
         <Button
+          style={{marginTop:50}}
           icon={{name: 'squirrel', type: 'octicon' }}
           title='退出'
-          backgroundColor='#4736C9' onPress={()=>this.props.fetchLogoutData()} />
+          backgroundColor='#4736C9'
+          onPress={()=>this.props.fetchLogoutData()} />
 
+          </ScrollView>
       </View>
 
     );

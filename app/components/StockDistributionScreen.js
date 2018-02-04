@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList,RefreshControl,ScrollView } from 'react-native';
 import styles from './styles';
 
 class StockDistributionScreen extends React.Component {
@@ -8,16 +8,23 @@ class StockDistributionScreen extends React.Component {
     title: '库存分布'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchStockDistributionData();
+  }
+
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchStockDistributionData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -30,6 +37,9 @@ class StockDistributionScreen extends React.Component {
     const stockDistributionInfo = this.props.stockDistributionInfo;
     if( !stockDistributionInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
     const {sizeTypes, dataByColor, dataOfTotal} = stockDistributionInfo;
     if (!sizeTypes || !dataByColor || !dataOfTotal)
       return null;
@@ -42,6 +52,15 @@ class StockDistributionScreen extends React.Component {
 
     return (
       <View style={{marginTop:10}}>
+
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
 
         <View style={styles.headRow}>
           <Text style={styles.headCell}>{header.c1}</Text>
@@ -111,6 +130,8 @@ class StockDistributionScreen extends React.Component {
           <Text style={styles.footCell}>{dataOfTotal.c1}</Text>
           <Text style={styles.footCell}>{dataOfTotal.c2}</Text>
         </View>
+
+        </ScrollView>
 
       </View>
     );

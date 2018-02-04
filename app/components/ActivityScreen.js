@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button,
+  FlatList,RefreshControl } from 'react-native';
 import { VictoryPie, VictoryLegend } from "victory-native";
 import styles from './styles';
 
@@ -9,17 +10,23 @@ class ActivityScreen extends React.Component {
     title: '活动'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchActivityData();
+  }
 
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchActivityData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -32,6 +39,9 @@ class ActivityScreen extends React.Component {
     const activityInfo = this.props.activityInfo;
     if( !activityInfo )
       return null;
+    else {
+      this.refreshing = false;
+    }
     const {summary, data, pie} = activityInfo;
     if (!summary || !data || !pie)
       return null;
@@ -69,6 +79,12 @@ class ActivityScreen extends React.Component {
               <Text style={styles.cell}>{item.c3}</Text>
               <Text style={styles.cell}>{item.c4}</Text>
             </View>
+          }
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
           }
         />
 

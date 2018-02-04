@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, FlatList,
+  TouchableOpacity, Image,RefreshControl } from 'react-native';
 import config from '../lib/config.js';
 import styles from './styles';
 
@@ -9,16 +10,23 @@ class SalesScreen extends React.Component {
     title: '畅滞销'
   };
 
+  refreshing = false;
+
+  _onRefresh() {
+    this.refreshing = true;
+    this.props.fetchSalesData();
+  }
+
   constructor() {
     super();
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
 
   }
 
   componentDidMount(){
-    this.props.fetchSalesData();
+    this._onRefresh();
   }
 
   componentWillUnmount() {
@@ -35,7 +43,9 @@ class SalesScreen extends React.Component {
     const salesInfo = this.props.salesInfo;
     if (salesInfo == null)
       return null;
-
+    else {
+      this.refreshing = false;
+    }
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
 
@@ -73,6 +83,12 @@ class SalesScreen extends React.Component {
                 <Text style={styles.cell}>{item.c9}</Text>
               </View>
             </TouchableOpacity>
+          }
+          refreshControl={
+            <RefreshControl
+              refreshing={this.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
           }
         />
       </View>

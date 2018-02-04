@@ -5,6 +5,7 @@ function buildHttpHeaders(){
   var headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache',
   }
   if(global.accessToken){
     headers[config.ACCESS_TOKEN] = global.accessToken;
