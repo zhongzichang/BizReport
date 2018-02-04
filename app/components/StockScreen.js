@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList,RefreshControl } from 'react-native';
+import { View, Text, Button, FlatList,RefreshControl,ScrollView } from 'react-native';
 import styles from './styles';
 
 class StockScreen extends React.Component {
@@ -50,6 +50,14 @@ class StockScreen extends React.Component {
     return (
 
       <View style={{marginTop:10}}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
+
 
         <View style={styles.row}>
           <Text style={styles.labelCell}>数量</Text>
@@ -92,12 +100,6 @@ class StockScreen extends React.Component {
               <Text style={styles.cell}>{item.c6}</Text>
               <Text style={styles.cell}>{item.c7}</Text>
             </View>}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
         />
 
         <FlatList
@@ -129,6 +131,7 @@ class StockScreen extends React.Component {
           <Text style={styles.footCell}>{total.c7}</Text>
         </View>
 
+      </ScrollView>
       </View>
     );
   }

@@ -101,6 +101,13 @@ class GuideScreen extends React.Component {
 
 
       <View style={{marginTop:10}}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
 
           <View>
 
@@ -140,12 +147,6 @@ class GuideScreen extends React.Component {
                     <Text style={styles.footCell}>{total.c8}</Text>
                     <Text style={styles.footCell}>{total.c9}</Text>
                   </View>}
-              refreshControl={
-                <RefreshControl
-                  refreshing={this.refreshing}
-                  onRefresh={this._onRefresh.bind(this)}
-                />
-              }
             />
 
           </View>
@@ -155,6 +156,7 @@ class GuideScreen extends React.Component {
           <RadarChart data={characterData} labels={labels}  maxima={maxima}/>
         </ScrollView>
 
+      </ScrollView>
       </View>
     );
   }

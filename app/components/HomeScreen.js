@@ -51,30 +51,31 @@ class HomeScreen extends React.Component {
             />
           }>
 
-        {shopsInfo != null && shopsInfo.length > 0 &&
-          <List containerStyle={{marginBottom: 20}}>
-            {
-              shopsInfo.map((item, i) => (
-                <ListItem
-                  key={i}
-                  icon={{name: 'cached'}}
-                  title={item.name}
-                  onPress={() => navigate('Performance', { shopInfo: item })}
-                  underlayColor="black"
-                />
-              ))
-            }
-          </List>
-        }
+          {shopsInfo != null && shopsInfo.length > 0 &&
+            <List containerStyle={{marginBottom: 20}}>
+              {
+                shopsInfo.map((item, i) => (
+                  <ListItem
+                    key={i}
+                    icon={{name: 'cached'}}
+                    title={item.name}
+                    onPress={() => navigate('Performance', { shopInfo: item })}
+                    underlayColor="black"
+                  />
+                ))
+              }
+            </List>
+          }
 
-        <Button
-          style={{marginTop:50}}
-          icon={{name: 'squirrel', type: 'octicon' }}
-          title='退出'
-          backgroundColor='#4736C9'
-          onPress={()=>this.props.fetchLogoutData()} />
+          <Button
+            style={{marginTop:50}}
+            icon={{name: 'squirrel', type: 'octicon' }}
+            title='退出'
+            backgroundColor='#4736C9'
+            onPress={()=>this.props.fetchLogoutData()} />
 
-          </ScrollView>
+        </ScrollView>
+
       </View>
 
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList,
-  StyleSheet,TouchableOpacity,RefreshControl } from 'react-native';
+  StyleSheet,TouchableOpacity,RefreshControl,ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from './styles';
 
@@ -47,6 +47,13 @@ class PerformanceScreen extends React.Component {
     return (
 
       <View style={{marginTop:10}}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
 
         <FlatList
           data={performanceInfo}
@@ -69,12 +76,6 @@ class PerformanceScreen extends React.Component {
               <Text style={styles.cell}>{item.c4}</Text>
               <Text style={styles.cell}>{item.c5}</Text>
             </View>}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
         />
 
         <View style={{marginTop: 30}}>
@@ -158,8 +159,10 @@ class PerformanceScreen extends React.Component {
             </TouchableOpacity>
 
           </View>
+
         </View>
 
+      </ScrollView>
       </View>
     );
   }

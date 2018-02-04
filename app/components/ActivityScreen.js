@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button,
-  FlatList,RefreshControl } from 'react-native';
+  FlatList,RefreshControl,ScrollView } from 'react-native';
 import { VictoryPie, VictoryLegend } from "victory-native";
 import styles from './styles';
 
@@ -61,6 +61,13 @@ class ActivityScreen extends React.Component {
     return (
 
       <View style={{marginTop:10}}>
+      <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={this.refreshing}
+          onRefresh={this._onRefresh.bind(this)}
+        />
+      }>
 
         <FlatList
           data={data}
@@ -79,12 +86,6 @@ class ActivityScreen extends React.Component {
               <Text style={styles.cell}>{item.c3}</Text>
               <Text style={styles.cell}>{item.c4}</Text>
             </View>
-          }
-          refreshControl={
-            <RefreshControl
-              refreshing={this.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
           }
         />
 
@@ -137,6 +138,7 @@ class ActivityScreen extends React.Component {
           </View>
         </View>
 
+      </ScrollView>
       </View>
     );
   }
