@@ -20,7 +20,6 @@ export async function makeInit(){
     }).then(ret => {
       global.accessToken = ret;
     }).catch(err => {
-    	console.warn(err.message);
     	switch (err.name) {
     	    case 'NotFoundError':
     	        // TODO;

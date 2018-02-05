@@ -14,11 +14,15 @@ export const fetchGuideData = () => (
           if(respJson.status == 0) {
             dispatch(fetchGuideDataSuccess(respJson.data));
           } else {
+            console.warn(respJson);
             dispatch(fetchDataError(respJson));
           }
         }
       )
-      .catch((err) => dispatch(fetchDataError(err)));
+      .catch( err => {
+        console.warn(err);
+        dispatch(fetchDataError(err));
+      });
   }
 );
 
