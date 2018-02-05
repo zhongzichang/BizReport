@@ -125,7 +125,12 @@ class MemberScreen extends React.Component {
                   <Text style={styles.cell}>{item.buyRate}</Text>
                   <Text style={styles.cell}>{item.buyAmount}</Text>
                   <Text style={styles.cell}>{item.lastTime}</Text>
-                  <Text style={styles.cell}>{item.dormancyDays}</Text>
+                  <Text style={[styles.cell,
+                    item.dormancyDays>=90
+                    ?styles.bgRed
+                    :(item.dormancyDays>60?styles.bgYellow:'')
+                  ]}>{item.dormancyDays}
+                  </Text>
                 </View>
               </View>
             </View>

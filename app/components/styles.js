@@ -87,5 +87,14 @@ module.exports = StyleSheet.create({
     paddingLeft:2,
     paddingRight:2,
   },
+  bgRed: {
+    backgroundColor: 'red'
+  },
+  bgGreen: {
+    backgroundColor: 'green'
+  },
+  bgYellow: {
+    backgroundColor: 'yellow'
+  }
 
 });

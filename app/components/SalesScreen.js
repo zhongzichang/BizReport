@@ -78,7 +78,11 @@ class SalesScreen extends React.Component {
                 <Text style={styles.cell}>{item.c4}</Text>
                 <Text style={styles.cell}>{item.c5}</Text>
                 <Text style={styles.cell}>{item.c6}</Text>
-                <Text style={styles.cell}>{item.c7}</Text>
+                <Text style={[styles.cell,
+                  item.c7>item.c8*0.7 ?
+                  (item.c7>=item.c8?styles.bgRed : styles.bgYellow)
+                  : '',
+                ]}>{item.c7}</Text>
                 <Text style={styles.cell}>{item.c8}</Text>
                 <Text style={styles.cell}>{item.c9}</Text>
               </View>

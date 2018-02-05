@@ -95,10 +95,20 @@ class StockScreen extends React.Component {
               <Text style={styles.cell}>{item.c1}</Text>
               <Text style={styles.cell}>{item.c2}</Text>
               <Text style={styles.cell}>{item.c3}</Text>
-              <Text style={styles.cell}>{item.c4}</Text>
-              <Text style={styles.cell}>{item.c5}</Text>
-              <Text style={styles.cell}>{item.c6}</Text>
-              <Text style={styles.cell}>{item.c7}</Text>
+              <Text style={[styles.cell,
+                item.c4>item.c5*1.2
+                ? styles.bgRed
+                : (item.c4<item.c5*0.8 ? styles.bgGreen : '')
+                ]}>
+                {item.c4}%
+              </Text>
+              <Text style={styles.cell}>{item.c5}%</Text>
+              <Text style={[styles.cell,
+                item.c6>item.c7*1.2
+                ? styles.bgRed
+                : (item.c6<item.c7*0.8 ? styles.bgGreen : '')
+                ]}>{item.c6}%</Text>
+              <Text style={styles.cell}>{item.c7}%</Text>
             </View>}
         />
 
@@ -109,10 +119,10 @@ class StockScreen extends React.Component {
               <Text style={styles.cell}>{item.c1}</Text>
               <Text style={styles.cell}>{item.c2}</Text>
               <Text style={styles.cell}>{item.c3}</Text>
-              <Text style={styles.cell}>{item.c4}</Text>
-              <Text style={styles.cell}>{item.c5}</Text>
-              <Text style={styles.cell}>{item.c6}</Text>
-              <Text style={styles.cell}>{item.c7}</Text>
+              <Text style={styles.cell}>{item.c4}%</Text>
+              <Text style={styles.cell}>{item.c5}%</Text>
+              <Text style={styles.cell}>{item.c6}%</Text>
+              <Text style={styles.cell}>{item.c7}%</Text>
             </View>}
           ListHeaderComponent={() =>
               <View style={styles.headRow}>
