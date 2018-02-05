@@ -10,9 +10,13 @@ export const fetchStockDistributionData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_STOCK_DISTRIBUTION)
       .then(
-        (data) => dispatch(
-          fetchStockDistributionDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchStockDistributionDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

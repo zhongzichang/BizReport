@@ -9,8 +9,14 @@ export const fetchLoginData = (username, password) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
     postData(config.API_URL_LOGIN, { username: username, password: password})
-      .then((data) => dispatch(
-        fetchLoginDataSuccess(data))
+      .then(
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchLoginDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch(
         (err) => dispatch(fetchDataError(err))

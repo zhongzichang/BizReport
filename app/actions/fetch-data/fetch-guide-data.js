@@ -10,9 +10,13 @@ export const fetchGuideData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_GUIDE)
       .then(
-        (data) => dispatch(
-          fetchGuideDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchGuideDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

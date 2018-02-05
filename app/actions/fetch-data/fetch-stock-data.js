@@ -10,9 +10,13 @@ export const fetchStockData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_STOCK)
       .then(
-        (data) => dispatch(
-          fetchStockDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchStockDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

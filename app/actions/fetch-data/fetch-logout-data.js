@@ -10,9 +10,13 @@ export const fetchLogoutData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_LOGOUT)
       .then(
-        (data) => dispatch(
-          fetchLogoutDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchLogoutDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

@@ -10,9 +10,13 @@ export const fetchFinanceData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_FINANCE)
       .then(
-        (data) => dispatch(
-          fetchFinanceDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchFinanceDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

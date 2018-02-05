@@ -10,9 +10,13 @@ export const fetchSalesData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_SALES)
       .then(
-        (data) => dispatch(
-          fetchSalesDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchSalesDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

@@ -10,9 +10,13 @@ export const fetchActivityData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_ACTIVITY)
       .then(
-        (data) => dispatch(
-          fetchActivityDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchActivityDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }

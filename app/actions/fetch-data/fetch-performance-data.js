@@ -9,7 +9,15 @@ export const fetchPerformanceData = () => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
     getData(config.API_URL_PERFORMANCE)
-      .then((data) => dispatch(fetchPerformanceDataSuccess(data)))
+      .then(
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchPerformanceDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
+      )
       .catch((err) => dispatch(fetchDataError(err)));
   }
 );

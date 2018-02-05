@@ -10,9 +10,13 @@ export const fetchMemberData = () => (
     dispatch(fetchDataRequest());
     getData(config.API_URL_MEMBER)
       .then(
-        (data) => dispatch(
-          fetchMemberDataSuccess(data)
-        )
+        (respJson) => {
+          if(respJson.status == 0) {
+            dispatch(fetchMemberDataSuccess(respJson.data));
+          } else {
+            dispatch(fetchDataError(respJson));
+          }
+        }
       )
       .catch((err) => dispatch(fetchDataError(err)));
   }
