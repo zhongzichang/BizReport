@@ -6,7 +6,7 @@ import {fetchPerformanceData} from '../actions/fetch-data/fetch-performance-data
 const mapStateToProps = (state : Object) => getPerformanceSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchPerformanceData: () => dispatch(fetchPerformanceData()),
+    fetchPerformanceData: (shop_id) => dispatch(fetchPerformanceData(shop_id)),
   }
 );
 

@@ -6,7 +6,7 @@ import {fetchGuideData} from '../actions/fetch-data/fetch-guide-data';
 const mapStateToProps = (state : Object) => getGuideSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchGuideData: () => dispatch(fetchGuideData()),
+    fetchGuideData: (shop_id) => dispatch(fetchGuideData(shop_id)),
   }
 );
 

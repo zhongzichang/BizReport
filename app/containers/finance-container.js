@@ -6,7 +6,7 @@ import {fetchFinanceData} from '../actions/fetch-data/fetch-finance-data';
 const mapStateToProps = (state : Object) => getFinanceSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchFinanceData: () => dispatch(fetchFinanceData()),
+    fetchFinanceData: (shop_id) => dispatch(fetchFinanceData(shop_id)),
   }
 );
 

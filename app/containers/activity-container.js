@@ -6,7 +6,7 @@ import {fetchActivityData} from '../actions/fetch-data/fetch-activity-data';
 const mapStateToProps = (state : Object) => getActivitySelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchActivityData: () => dispatch(fetchActivityData()),
+    fetchActivityData: (shop_id) => dispatch(fetchActivityData(shop_id)),
   }
 );
 

@@ -1,14 +1,14 @@
 import {getData} from '../../services/http-requests';
 import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
-import config from '../../lib/config';
+import global from '../../services/global';
 import {FETCH_SALES_DATA_SUCCESS} from '../../constants/action-names';
 
 
-export const fetchSalesData = () => (
+export const fetchSalesData = (shop_id) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    getData(config.API_URL_SALES)
+    getData(global.api_url_sales+"?shop_id="+shop_id)
       .then(
         (respJson) => {
           if(respJson.status == 0) {

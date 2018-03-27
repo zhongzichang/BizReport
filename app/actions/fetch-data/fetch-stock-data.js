@@ -1,14 +1,14 @@
 import {getData} from '../../services/http-requests';
 import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
-import config from '../../lib/config';
+import global from '../../services/global';
 import {FETCH_STOCK_DATA_SUCCESS} from '../../constants/action-names';
 
 
-export const fetchStockData = () => (
+export const fetchStockData = (shop_id) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    getData(config.API_URL_STOCK)
+    getData(global.api_url_stock+"?shop_id="+shop_id)
       .then(
         (respJson) => {
           if(respJson.status == 0) {

@@ -13,8 +13,12 @@ class PerformanceScreen extends React.Component {
   refreshing = false;
 
   _onRefresh() {
-    this.refreshing = true;
-    this.props.fetchPerformanceData();
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+    if( shopInfo && shopInfo.c1 ){
+      this.refreshing = true;
+      this.props.fetchPerformanceData(shopInfo.c1);
+    }
   }
 
   constructor(props) {
@@ -60,7 +64,7 @@ class PerformanceScreen extends React.Component {
           ListHeaderComponent={() =>
               <View style={styles.headRow}>
                 <Text style={styles.headCell} ellipsizeMode='head'>
-                  {shopInfo != null && shopInfo.name}
+                  {shopInfo != null && shopInfo.c2}
                 </Text>
                 <Text style={styles.headCell}>今天</Text>
                 <Text style={styles.headCell}>昨天</Text>

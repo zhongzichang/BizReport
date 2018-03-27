@@ -13,8 +13,12 @@ class SalesScreen extends React.Component {
   refreshing = false;
 
   _onRefresh() {
-    this.refreshing = true;
-    this.props.fetchSalesData();
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+    if( shopInfo && shopInfo.c1 ){
+      this.refreshing = true;
+      this.props.fetchSalesData(shopInfo.c1);
+    }
   }
 
   constructor() {
@@ -34,8 +38,11 @@ class SalesScreen extends React.Component {
 
   onPress = (item) =>
   {
-    const { navigate } = this.props.navigation;
-    navigate('StockDistribution');
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+    if( shopInfo && shopInfo.c1 ){
+      navigate('StockDistribution', {shopInfo, item});
+    }
   }
 
   render() {

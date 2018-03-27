@@ -1,14 +1,14 @@
 import {getData} from '../../services/http-requests';
 import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
-import config from '../../lib/config';
+import global from '../../services/global';
 import {FETCH_GUIDE_DATA_SUCCESS} from '../../constants/action-names';
 
 
-export const fetchGuideData = () => (
+export const fetchGuideData = (shop_id) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    getData(config.API_URL_GUIDE)
+    getData(global.api_url_guide+"?shop_id="+shop_id)
       .then(
         (respJson) => {
           if(respJson.status == 0) {

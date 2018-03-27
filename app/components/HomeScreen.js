@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, ScrollView,RefreshControl } from 'react-native';
 import {Button, List, ListItem} from 'react-native-elements';
+import {makeLogout} from '../services/make-logout';
 
 class HomeScreen extends React.Component {
 
@@ -34,7 +35,13 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const shopsInfo = this.props.shopsInfo;
     if( !shopsInfo ){
-      return null;
+      if( this.refreshing ){
+        return (
+          <View style={styles.container}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>);
+      } else
+        return null;
     } else {
       this.refreshing = false;
     }
@@ -58,7 +65,7 @@ class HomeScreen extends React.Component {
                   <ListItem
                     key={i}
                     icon={{name: 'cached'}}
-                    title={item.name}
+                    title={item.c2}
                     onPress={() => navigate('Performance', { shopInfo: item })}
                     underlayColor="black"
                   />
@@ -72,7 +79,12 @@ class HomeScreen extends React.Component {
             icon={{name: 'squirrel', type: 'octicon' }}
             title='退出'
             backgroundColor='#4736C9'
-            onPress={()=>this.props.fetchLogoutData()} />
+            onPress={
+              ()=> {
+                makeLogout();
+                //this.props.fetchLogoutData()
+              }
+            } />
 
         </ScrollView>
 

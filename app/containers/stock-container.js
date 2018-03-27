@@ -6,7 +6,7 @@ import {fetchStockData} from '../actions/fetch-data/fetch-stock-data';
 const mapStateToProps = (state : Object) => getStockSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchStockData: () => dispatch(fetchStockData()),
+    fetchStockData: (shop_id) => dispatch(fetchStockData(shop_id)),
   }
 );
 

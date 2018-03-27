@@ -1,14 +1,14 @@
-import {postData} from '../../services/http-requests';
+import {getData} from '../../services/http-requests';
 import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
-import config from '../../lib/config';
+import global from '../../services/global';
 import {FETCH_LOGIN_DATA_SUCCESS} from '../../constants/action-names';
 
 
 export const fetchLoginData = (username, password) => (
   (dispatch : Function) => {
     dispatch(fetchDataRequest());
-    postData(config.API_URL_LOGIN, { username: username, password: password})
+    getData(global.api_url_login + "?username=" + username + "&password=" + password)
       .then(
         (respJson) => {
           if(respJson.status == 0) {

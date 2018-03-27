@@ -6,7 +6,7 @@ import {fetchSalesData} from '../actions/fetch-data/fetch-sales-data';
 const mapStateToProps = (state : Object) => getSalesSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchSalesData: () => dispatch(fetchSalesData()),
+    fetchSalesData: (shop_id) => dispatch(fetchSalesData(shop_id)),
   }
 );
 

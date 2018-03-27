@@ -8,7 +8,8 @@ import {fetchStockDistributionData}
 const mapStateToProps = (state : Object) => getStockDistributionSelector(state);
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchStockDistributionData: () => dispatch(fetchStockDistributionData()),
+    fetchStockDistributionData:
+    (shop_id,product_id) => dispatch(fetchStockDistributionData(shop_id,product_id)),
   }
 );
 

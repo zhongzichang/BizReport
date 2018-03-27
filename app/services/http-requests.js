@@ -14,9 +14,13 @@ function buildHttpHeaders(){
 }
 
 export async function getData(url){
-  console.info(url);
+  var conn = url.indexOf("?") >= 0 ? "&" : "?";
+  var urlx = url;
+  if( global.username && global.passwordMd5)
+    urlx += conn + "username=" + global.username + "&password=" + global.passwordMd5;
+  console.info(urlx);
   try {
-    let response = await fetch(url,{
+    let response = await fetch(urlx,{
       method: 'GET',
       headers: buildHttpHeaders(),
       cache: 'default'
@@ -25,7 +29,7 @@ export async function getData(url){
     if( accessToken ){
       // save it
       global.accessToken = accessToken;
-      global.storage.save({key:ccs.ACCESS_TOKEN,data:accessToken});
+      global.storage.save({key:config.ACCESS_TOKEN,data:accessToken});
     }
     console.info(response);
     let responseJson = await response.json();

@@ -13,8 +13,12 @@ class ActivityScreen extends React.Component {
   refreshing = false;
 
   _onRefresh() {
-    this.refreshing = true;
-    this.props.fetchActivityData();
+    const { navigate, state } = this.props.navigation;
+    const shopInfo = state.params ? state.params.shopInfo : null;
+    if( shopInfo && shopInfo.c1 ){
+      this.refreshing = true;
+      this.props.fetchActivityData(shopInfo.c1);
+    }
   }
 
   constructor() {
