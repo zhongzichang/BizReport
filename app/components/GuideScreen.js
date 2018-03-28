@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList,
-  ScrollView,TouchableOpacity,RefreshControl } from 'react-native';
+  ScrollView,TouchableOpacity,RefreshControl,ActivityIndicator } from 'react-native';
 import { VictoryChart, VictoryBar,
   VictoryTheme, VictoryPolarAxis,
   VictoryStack, VictoryAxis, VictoryArea } from "victory-native";
@@ -55,18 +55,25 @@ class GuideScreen extends React.Component {
 
   render() {
 
-    console.info(this.props.guideInfo);
+    const {isLoading, error, resp } = this.props;
 
-    const guideInfo = this.props.guideInfo;
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const guideInfo = resp.data;
     if( !guideInfo )
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }
 
     const {data, total} = guideInfo;
     if (!data || !total)
-      return null;
+      return <Text>数据格式不对</Text>;
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;

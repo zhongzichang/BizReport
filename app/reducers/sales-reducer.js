@@ -1,11 +1,12 @@
 import {
   FETCH_SALES_DATA_SUCCESS,
+  FETCH_SALES_DATA_ERROR
 } from '../constants/action-names';
 
 const initialState = {
-  stockInfo: {},
   isLoading: false,
   error: false,
+  resp: {}
 };
 
 export const getSalesSelector = (state : Object) => ({...state.sales});
@@ -17,7 +18,14 @@ const salesReducer = (state : Object = initialState, action : Object) => {
       return {
         isLoading: false,
         error: false,
-        salesInfo: action.payload.data,
+        resp: action.payload.resp,
+      };
+    }
+    case FETCH_SALES_DATA_ERROR: {
+      return {
+        isLoading: false,
+        error: true,
+        resp: action.payload.resp,
       };
     }
     default: {

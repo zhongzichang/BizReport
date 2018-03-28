@@ -1,11 +1,12 @@
 import {
   FETCH_ACTIVITY_DATA_SUCCESS,
+  FETCH_ACTIVITY_DATA_ERROR
 } from '../constants/action-names';
 
 const initialState = {
-  activityInfo: {},
   isLoading: false,
   error: false,
+  resp: {},
 };
 
 export const getActivitySelector = (state : Object) => ({...state.activity});
@@ -17,7 +18,14 @@ const activityReducer = (state : Object = initialState, action : Object) => {
       return {
         isLoading: false,
         error: false,
-        activityInfo: action.payload.data,
+        resp: action.payload.resp,
+      };
+    }
+    case FETCH_ACTIVITY_DATA_ERROR: {
+      return {
+        isLoading: false,
+        error: true,
+        resp: action.payload.resp,
       };
     }
     default: {

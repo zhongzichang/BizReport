@@ -1,11 +1,12 @@
 import {
   FETCH_STOCK_DISTRIBUTION_DATA_SUCCESS,
+  FETCH_STOCK_DISTRIBUTION_DATA_ERROR
 } from '../constants/action-names';
 
 const initialState = {
-  stockInfo: {},
   isLoading: false,
   error: false,
+  resp: {}
 };
 
 export const getStockDistributionSelector = (state : Object) =>
@@ -18,7 +19,14 @@ const stockDistributionReducer = (state : Object = initialState, action : Object
       return {
         isLoading: false,
         error: false,
-        stockDistributionInfo: action.payload.data,
+        resp: action.payload.resp,
+      };
+    }
+    case FETCH_STOCK_DISTRIBUTION_DATA_ERROR: {
+      return {
+        isLoading: false,
+        error: true,
+        resp: action.payload.resp,
       };
     }
     default: {

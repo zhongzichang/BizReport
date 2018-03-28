@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList,RefreshControl,ScrollView } from 'react-native';
+import { View, Text, Button, FlatList,RefreshControl,ScrollView,ActivityIndicator } from 'react-native';
 import styles from './styles';
 
 class StockDistributionScreen extends React.Component {
@@ -36,11 +36,18 @@ class StockDistributionScreen extends React.Component {
 
   render() {
 
-    console.info(this.props.stockDistributionInfo);
+    const {isLoading, error, resp } = this.props;
 
-    const stockDistributionInfo = this.props.stockDistributionInfo;
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const stockDistributionInfo = resp.data;
     if( !stockDistributionInfo )
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }

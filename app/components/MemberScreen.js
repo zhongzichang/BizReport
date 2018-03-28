@@ -1,5 +1,6 @@
 import React from 'react';
-import { View,Text, Button, FlatList, ListView,ScrollView,RefreshControl } from 'react-native';
+import { View,Text, Button, FlatList, ListView,
+  ScrollView,RefreshControl,ActivityIndicator } from 'react-native';
 import { VictoryPie,VictoryLabel,VictoryLegend } from "victory-native";
 import styles from './styles';
 
@@ -37,13 +38,19 @@ class MemberScreen extends React.Component {
 
   render() {
 
+    const {isLoading, error, resp } = this.props;
 
-    console.info(this.props.memberInfo);
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
 
-    const memberInfo = this.props.memberInfo;
+    const memberInfo = resp.data;
 
     if( !memberInfo )
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }

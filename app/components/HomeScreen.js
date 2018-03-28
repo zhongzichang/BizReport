@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, ScrollView,RefreshControl } from 'react-native';
+import { View, Text, FlatList,
+  ScrollView,RefreshControl,ActivityIndicator } from 'react-native';
 import {Button, List, ListItem} from 'react-native-elements';
 import {makeLogout} from '../services/make-logout';
+import styles from './styles';
 
 class HomeScreen extends React.Component {
 
@@ -32,19 +34,23 @@ class HomeScreen extends React.Component {
 
   render() {
 
-    const { navigate } = this.props.navigation;
-    const shopsInfo = this.props.shopsInfo;
+    const {isLoading, error, resp } = this.props;
+
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const shopsInfo = resp.data;
     if( !shopsInfo ){
-      if( this.refreshing ){
-        return (
-          <View style={styles.container}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>);
-      } else
-        return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     } else {
       this.refreshing = false;
     }
+
+    const { navigate } = this.props.navigation;
 
     return (
 

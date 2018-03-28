@@ -95,6 +95,27 @@ module.exports = StyleSheet.create({
   },
   bgYellow: {
     backgroundColor: 'yellow'
-  }
+  },
+
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  usernameInput:{
+    marginTop: 30,
+  },
+  passwordInput:{
+    marginTop: 30,
+  },
+  loginButton:{
+    marginTop: 30,
+    backgroundColor: 'green',
+  },
 
 });

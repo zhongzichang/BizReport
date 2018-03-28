@@ -3,6 +3,7 @@ import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_SHOPS_DATA_SUCCESS} from '../../constants/action-names';
+import {FETCH_SHOPS_DATA_ERROR} from '../../constants/action-names';
 
 
 export const fetchShopsData = () => (
@@ -12,10 +13,10 @@ export const fetchShopsData = () => (
       .then(
         (respJson) => {
           if(respJson.status == 0) {
-            dispatch(fetchShopsDataSuccess(respJson.data));
+            dispatch(fetchShopsDataSuccess(respJson));
           } else {
-            console.warn(respJson);
-            dispatch(fetchDataError(respJson));
+            //console.warn(respJson);
+            dispatch(fetchShopsDataError(respJson));
           }
         }
       )
@@ -26,9 +27,16 @@ export const fetchShopsData = () => (
   }
 );
 
-fetchShopsDataSuccess = (data : Object) => (
+fetchShopsDataSuccess = (resp : Object) => (
   {
     type: FETCH_SHOPS_DATA_SUCCESS,
-    payload: {data},
+    payload: {resp},
+  }
+);
+
+fetchShopsDataError = (resp : Object) => (
+  {
+    type: FETCH_SHOPS_DATA_ERROR,
+    payload: {resp},
   }
 );

@@ -3,6 +3,7 @@ import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_LOGOUT_DATA_SUCCESS} from '../../constants/action-names';
+import {FETCH_LOGOUT_DATA_ERROR} from '../../constants/action-names';
 
 export const fetchLogoutData = () => (
   (dispatch : Function) => {
@@ -11,10 +12,10 @@ export const fetchLogoutData = () => (
       .then(
         (respJson) => {
           if(respJson.status == 0) {
-            dispatch(fetchLogoutDataSuccess(respJson.data));
+            dispatch(fetchLogoutDataSuccess(respJson));
           } else {
-            console.warn(respJson);
-            dispatch(fetchDataError(respJson));
+            //console.warn(respJson);
+            dispatch(fetchLogoutDataError(respJson));
           }
         }
       )
@@ -25,9 +26,16 @@ export const fetchLogoutData = () => (
   }
 );
 
-fetchLogoutDataSuccess = (data : Object) => (
+fetchLogoutDataSuccess = (resp : Object) => (
   {
     type: FETCH_LOGOUT_DATA_SUCCESS,
-    payload: {data},
+    payload: {resp},
+  }
+);
+
+fetchLogoutDataError = (resp : Object) => (
+  {
+    type: FETCH_LOGOUT_DATA_ERROR,
+    payload: {resp},
   }
 );

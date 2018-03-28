@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList,
-  StyleSheet,TouchableOpacity,RefreshControl,ScrollView } from 'react-native';
+  StyleSheet,TouchableOpacity,RefreshControl,ScrollView,ActivityIndicator } from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from './styles';
 
@@ -38,9 +38,18 @@ class PerformanceScreen extends React.Component {
 
   render() {
 
-    const performanceInfo = this.props.performanceInfo;
+    const {isLoading, error, resp } = this.props;
+
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const performanceInfo = resp.data;
     if (performanceInfo == null)
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }

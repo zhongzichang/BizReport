@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button,
-  FlatList,RefreshControl,ScrollView } from 'react-native';
+  FlatList,RefreshControl,ScrollView,ActivityIndicator } from 'react-native';
 import { VictoryPie, VictoryLegend } from "victory-native";
 import styles from './styles';
 
@@ -38,11 +38,18 @@ class ActivityScreen extends React.Component {
 
   render() {
 
-    console.info(this.props.activityInfo);
+    const {isLoading, error, resp } = this.props;
 
-    const activityInfo = this.props.activityInfo;
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const activityInfo = resp.data;
     if( !activityInfo )
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }
@@ -60,7 +67,6 @@ class ActivityScreen extends React.Component {
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
-
 
     return (
 

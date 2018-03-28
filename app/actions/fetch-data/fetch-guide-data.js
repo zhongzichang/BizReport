@@ -3,6 +3,7 @@ import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_GUIDE_DATA_SUCCESS} from '../../constants/action-names';
+import {FETCH_GUIDE_DATA_ERROR} from '../../constants/action-names';
 
 
 export const fetchGuideData = (shop_id) => (
@@ -12,10 +13,10 @@ export const fetchGuideData = (shop_id) => (
       .then(
         (respJson) => {
           if(respJson.status == 0) {
-            dispatch(fetchGuideDataSuccess(respJson.data));
+            dispatch(fetchGuideDataSuccess(respJson));
           } else {
-            console.warn(respJson);
-            dispatch(fetchDataError(respJson));
+            //console.warn(respJson);
+            dispatch(fetchGuideDataError(respJson));
           }
         }
       )
@@ -26,9 +27,17 @@ export const fetchGuideData = (shop_id) => (
   }
 );
 
-fetchGuideDataSuccess = (data : Object) => (
+fetchGuideDataSuccess = (resp : Object) => (
   {
     type: FETCH_GUIDE_DATA_SUCCESS,
-    payload: {data},
+    payload: {resp},
+  }
+);
+
+
+fetchGuideDataError = (resp : Object) => (
+  {
+    type: FETCH_GUIDE_DATA_ERROR,
+    payload: {resp},
   }
 );

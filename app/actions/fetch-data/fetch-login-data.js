@@ -3,6 +3,7 @@ import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_LOGIN_DATA_SUCCESS} from '../../constants/action-names';
+import {FETCH_LOGIN_DATA_ERROR} from '../../constants/action-names';
 
 
 export const fetchLoginData = (username, password) => (
@@ -12,10 +13,10 @@ export const fetchLoginData = (username, password) => (
       .then(
         (respJson) => {
           if(respJson.status == 0) {
-            dispatch(fetchLoginDataSuccess(respJson.data));
+            dispatch(fetchLoginDataSuccess(respJson));
           } else {
-            console.warn(respJson);
-            dispatch(fetchDataError(respJson));
+            //console.warn(respJson);
+            dispatch(fetchLoginDataError(respJson));
           }
         }
       )
@@ -26,9 +27,16 @@ export const fetchLoginData = (username, password) => (
   }
 );
 
-fetchLoginDataSuccess = (data : Object) => (
+fetchLoginDataSuccess = (resp : Object) => (
   {
     type: FETCH_LOGIN_DATA_SUCCESS,
-    payload: {data},
+    payload: {resp},
+  }
+);
+
+fetchLoginDataError = (resp : Object) => (
+  {
+    type: FETCH_LOGIN_DATA_ERROR,
+    payload: {resp},
   }
 );

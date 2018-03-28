@@ -3,6 +3,7 @@ import {fetchDataError} from './fetch-data-error';
 import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_STOCK_DISTRIBUTION_DATA_SUCCESS} from '../../constants/action-names';
+import {FETCH_STOCK_DISTRIBUTION_DATA_ERROR} from '../../constants/action-names';
 
 
 export const fetchStockDistributionData = (shop_id,product_id) => (
@@ -13,10 +14,10 @@ export const fetchStockDistributionData = (shop_id,product_id) => (
       .then(
         (respJson) => {
           if(respJson.status == 0) {
-            dispatch(fetchStockDistributionDataSuccess(respJson.data));
+            dispatch(fetchStockDistributionDataSuccess(respJson));
           } else {
-            console.warn(respJson);
-            dispatch(fetchDataError(respJson));
+            //console.warn(respJson);
+            dispatch(fetchStockDistributionDataError(respJson));
           }
         }
       )
@@ -27,9 +28,16 @@ export const fetchStockDistributionData = (shop_id,product_id) => (
   }
 );
 
-fetchStockDistributionDataSuccess = (data : Object) => (
+fetchStockDistributionDataSuccess = (resp : Object) => (
   {
     type: FETCH_STOCK_DISTRIBUTION_DATA_SUCCESS,
-    payload: {data},
+    payload: {resp},
+  }
+);
+
+fetchStockDistributionDataError = (resp : Object) => (
+  {
+    type: FETCH_STOCK_DISTRIBUTION_DATA_ERROR,
+    payload: {resp},
   }
 );

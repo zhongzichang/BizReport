@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList,
-  TouchableOpacity, Image,RefreshControl } from 'react-native';
+  TouchableOpacity, Image,RefreshControl,ActivityIndicator } from 'react-native';
 import config from '../lib/config.js';
 import styles from './styles';
 
@@ -47,9 +47,18 @@ class SalesScreen extends React.Component {
 
   render() {
 
-    const salesInfo = this.props.salesInfo;
+    const {isLoading, error, resp } = this.props;
+
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const salesInfo = resp.data;
     if (salesInfo == null)
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }
@@ -80,7 +89,7 @@ class SalesScreen extends React.Component {
                 <Text style={styles.cell}>{item.c1}</Text>
                 <Text style={styles.cell}>{item.c2}</Text>
                 <Image style={styles.cell}
-                  source={{uri: config.IMAGE_URL_PREFIX+'/'+item.c3}}
+                  source={{uri: item.c3}}
                 />
                 <Text style={styles.cell}>{item.c4}</Text>
                 <Text style={styles.cell}>{item.c5}</Text>

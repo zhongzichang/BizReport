@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList,
-  ScrollView,RefreshControl } from 'react-native';
+  ScrollView,RefreshControl,ActivityIndicator } from 'react-native';
 import { VictoryBar, VictoryChart, VictoryTheme,VictoryLabel } from "victory-native";
 import styles from './styles';
 
@@ -37,11 +37,18 @@ class FinanceScreen extends React.Component {
 
   render() {
 
-    console.info(this.props.financeInfo);
+    const {isLoading, error, resp } = this.props;
 
-    const financeInfo = this.props.financeInfo;
+    if( error ){
+      return <Text>{resp.message} - {resp.status}</Text>;
+    }
+
+    const financeInfo = resp.data;
     if( !financeInfo )
-      return null;
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>);
     else {
       this.refreshing = false;
     }

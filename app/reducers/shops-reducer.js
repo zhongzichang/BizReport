@@ -1,11 +1,12 @@
 import {
   FETCH_SHOPS_DATA_SUCCESS,
+  FETCH_SHOPS_DATA_ERROR
 } from '../constants/action-names';
 
 const initialState = {
-  shopsInfo: {},
   isLoading: false,
   error: false,
+  resp: {}
 };
 
 export const getShopsSelector = (state : Object) => ({...state.shops});
@@ -17,7 +18,14 @@ const shopsReducer = (state : Object = initialState, action : Object) => {
       return {
         isLoading: false,
         error: false,
-        shopsInfo: action.payload.data,
+        resp: action.payload.resp,
+      };
+    }
+    case FETCH_SHOPS_DATA_ERROR: {
+      return {
+        isLoading: false,
+        error: true,
+        resp: action.payload.resp,
       };
     }
     default: {

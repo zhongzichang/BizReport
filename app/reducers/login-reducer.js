@@ -1,13 +1,14 @@
 import {
   FETCH_LOGIN_DATA_SUCCESS,
+  FETCH_LOGIN_DATA_ERROR
 } from '../constants/action-names';
 import global from '../services/global';
 import config from '../lib/config';
 
 const initialState = {
-  loginInfo: {},
   isLoading: false,
   error: false,
+  resp: {}
 };
 
 export const getLoginSelector = (state : Object) => ({...state.login});
@@ -26,8 +27,15 @@ const loginReducer = (state : Object = initialState, action : Object) => {
       return {
         isLoading: false,
         error: false,
-        loginInfo: action.payload.data,
+        resp: action.payload.resp,
       };
+    }
+    case FETCH_LOGIN_DATA_ERROR: {
+      return {
+        isLoading: false,
+        error: true,
+        resp: action.payload.resp,
+      }
     }
     default: {
       return state;
