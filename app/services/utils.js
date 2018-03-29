@@ -1,4 +1,5 @@
 import global from './global';
+import {FETCH_ACTIVITY_DATA_SUCCESS} from '../constants/action-names';
 
 function setHostAndPort(hostAndPort){
   var prefix = "http://" + hostAndPort + "/biz-report";
@@ -20,4 +21,9 @@ function setUrlPrefix(prefix){
   global.api_url_logout = `${prefix}/logout.jsp`;
 }
 
-export {setUrlPrefix, setHostAndPort};
+const notifyLocalLogout = () => (
+  (dispatch : Function) => {
+    dispatch({type:FETCH_LOGOUT_DATA_SUCCESS});
+  }
+);
+export {setUrlPrefix, setHostAndPort, notifyLocalLogout};

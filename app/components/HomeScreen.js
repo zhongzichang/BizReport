@@ -1,17 +1,21 @@
 import React from 'react';
 import { View, Text, FlatList,
   ScrollView,RefreshControl,
-  ActivityIndicator } from 'react-native';
-import {Button, List,
+  ActivityIndicator,Button } from 'react-native';
+import { List,
   ListItem, FormInput, SearchBar} from 'react-native-elements';
-import {makeLogout} from '../services/make-logout';
 import styles from './styles';
 
 class HomeScreen extends React.Component {
 
-  static navigationOptions = {
-    title: '首页'
-  };
+  static navigationOptions = ({ navigation }) => {
+      const params = navigation.state.params || {};
+      const button = params.logout ? (<Button onPress={params.logout} title="退出" />) : null;
+      return {
+        headerTitle: "首页",
+        headerRight: button,
+      };
+    };
 
   page = 1;
 
@@ -20,6 +24,10 @@ class HomeScreen extends React.Component {
   keyword = "";
 
   shopsInfo = [];
+
+  _logout = () => {
+    this.props.fetchLogoutData();
+  };
 
   _onRefresh() {
     this.shopsInfo = [];
@@ -60,6 +68,7 @@ class HomeScreen extends React.Component {
   }
 
   componentWillMount() {
+    this.props.navigation.setParams({ logout: this._logout });
   }
 
   componentDidMount(){

@@ -56,8 +56,8 @@ class RootScreen extends React.Component {
 
     const initAppInfo = this.props.initAppInfo;
 
-    const loginInfo = loginResp.data;
-    const logoutInfo = logoutResp.data;
+    const loginInfo = loginResp ? loginResp.data : null;
+    const logoutInfo = logoutResp ? logoutResp.data : null;
 
     console.info(this.props);
 

@@ -8,21 +8,7 @@ import {FETCH_LOGOUT_DATA_REQUEST} from '../../constants/action-names';
 
 export const fetchLogoutData = () => (
   (dispatch : Function) => {
-    dispatch(fetchLogoutDataRequest());
-    getData(global.api_url_logout)
-      .then(
-        (respJson) => {
-          if(respJson.status == 0) {
-            dispatch(fetchLogoutDataSuccess(respJson));
-          } else {
-            dispatch(fetchLogoutDataError(respJson));
-          }
-        }
-      )
-      .catch( err => {
-        console.warn(err);
-        dispatch(fetchDataError(err));
-      });
+    dispatch(fetchLogoutDataSuccess({status:0,message:"退出成功"}));
   }
 );
 
