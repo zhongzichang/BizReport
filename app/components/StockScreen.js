@@ -8,13 +8,10 @@ class StockScreen extends React.Component {
     title: '库存'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchStockData(shopInfo.c1);
     }
   }
@@ -42,16 +39,13 @@ class StockScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const stockInfo = resp.data;
-    if( !stockInfo )
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
-    const {summary, dataWithCategory, dataWithSeason, total} = stockInfo;
+
+    const {summary, dataWithCategory, dataWithSeason, total} = resp.data;
     if (!summary || !dataWithCategory || !dataWithSeason || !total)
       return null;
 
@@ -64,7 +58,7 @@ class StockScreen extends React.Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={this.refreshing}
+            refreshing={isLoading}
             onRefresh={this._onRefresh.bind(this)}
           />
         }>

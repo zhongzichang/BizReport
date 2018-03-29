@@ -10,13 +10,10 @@ class SalesScreen extends React.Component {
     title: '畅滞销'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchSalesData(shopInfo.c1);
     }
   }
@@ -53,15 +50,14 @@ class SalesScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const salesInfo = resp.data;
-    if (salesInfo == null)
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
+
+    const salesInfo = resp.data;
+
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
 
@@ -106,7 +102,7 @@ class SalesScreen extends React.Component {
           }
           refreshControl={
             <RefreshControl
-              refreshing={this.refreshing}
+              refreshing={isLoading}
               onRefresh={this._onRefresh.bind(this)}
             />
           }

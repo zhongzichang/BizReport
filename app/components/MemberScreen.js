@@ -10,13 +10,10 @@ class MemberScreen extends React.Component {
     title: '会员'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchMemberData(shopInfo.c1);
     }
   }
@@ -44,16 +41,11 @@ class MemberScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const memberInfo = resp.data;
-
-    if( !memberInfo )
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
 
     const {summary, data, liveness} = memberInfo;
     if (!summary || !data || !liveness)
@@ -79,7 +71,7 @@ class MemberScreen extends React.Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={this.refreshing}
+            refreshing={isLoading}
             onRefresh={this._onRefresh.bind(this)}
           />
         }

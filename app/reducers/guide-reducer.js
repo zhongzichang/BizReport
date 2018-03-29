@@ -1,6 +1,7 @@
 import {
   FETCH_GUIDE_DATA_SUCCESS,
-  FETCH_GUIDE_DATA_ERROR
+  FETCH_GUIDE_DATA_ERROR,
+  FETCH_GUIDE_DATA_REQUEST
 } from '../constants/action-names';
 
 const initialState = {
@@ -26,6 +27,11 @@ const guideReducer = (state : Object = initialState, action : Object) => {
         isLoading: false,
         error: true,
         resp: action.payload.resp,
+      };
+    }
+    case FETCH_GUIDE_DATA_REQUEST: {
+      return {
+        isLoading: true,
       };
     }
     default: {

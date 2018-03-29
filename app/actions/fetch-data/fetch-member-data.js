@@ -4,18 +4,18 @@ import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_MEMBER_DATA_SUCCESS} from '../../constants/action-names';
 import {FETCH_MEMBER_DATA_ERROR} from '../../constants/action-names';
+import {FETCH_MEMBER_DATA_REQUEST} from '../../constants/action-names';
 
 
 export const fetchMemberData = (shop_id) => (
   (dispatch : Function) => {
-    dispatch(fetchDataRequest());
+    dispatch(fetchMemberDataRequest());
     getData(global.api_url_member+"?shop_id="+shop_id)
       .then(
         (respJson) => {
           if(respJson.status == 0) {
             dispatch(fetchMemberDataSuccess(respJson));
           } else {
-            //console.warn(respJson);
             dispatch(fetchMemberDataError(respJson));
           }
         }
@@ -38,5 +38,12 @@ fetchMemberDataError = (resp : Object) => (
   {
     type: FETCH_MEMBER_DATA_ERROR,
     payload: {resp},
+  }
+);
+
+fetchMemberDataRequest = (resp : Object) => (
+  {
+    type: FETCH_MEMBER_DATA_REQUEST,
+    payload: {isLoading: true},
   }
 );

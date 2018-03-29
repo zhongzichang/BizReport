@@ -15,13 +15,10 @@ class GuideScreen extends React.Component {
     title: '导购'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchGuideData(shopInfo.c1);
     }
   }
@@ -61,17 +58,13 @@ class GuideScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const guideInfo = resp.data;
-    if( !guideInfo )
+    if( !resp || !resp.data ) {
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
     }
-
-    const {data, total} = guideInfo;
+    const {data, total} = resp.data;
     if (!data || !total)
       return <Text>数据格式不对</Text>;
 
@@ -115,7 +108,7 @@ class GuideScreen extends React.Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={this.refreshing}
+            refreshing={isLoading}
             onRefresh={this._onRefresh.bind(this)}
           />
         }>

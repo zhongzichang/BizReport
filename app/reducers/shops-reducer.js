@@ -1,6 +1,7 @@
 import {
   FETCH_SHOPS_DATA_SUCCESS,
-  FETCH_SHOPS_DATA_ERROR
+  FETCH_SHOPS_DATA_ERROR,
+  FETCH_SHOPS_DATA_REQUEST
 } from '../constants/action-names';
 
 const initialState = {
@@ -27,6 +28,11 @@ const shopsReducer = (state : Object = initialState, action : Object) => {
         error: true,
         resp: action.payload.resp,
       };
+    }
+    case FETCH_SHOPS_DATA_REQUEST: {
+      return {
+        isLoading: true,
+      }
     }
     default: {
       return state;

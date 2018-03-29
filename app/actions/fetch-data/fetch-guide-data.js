@@ -4,11 +4,12 @@ import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_GUIDE_DATA_SUCCESS} from '../../constants/action-names';
 import {FETCH_GUIDE_DATA_ERROR} from '../../constants/action-names';
+import {FETCH_GUIDE_DATA_REQUEST} from '../../constants/action-names';
 
 
 export const fetchGuideData = (shop_id) => (
   (dispatch : Function) => {
-    dispatch(fetchDataRequest());
+    dispatch(fetchGuideDataRequest());
     getData(global.api_url_guide+"?shop_id="+shop_id)
       .then(
         (respJson) => {
@@ -39,5 +40,13 @@ fetchGuideDataError = (resp : Object) => (
   {
     type: FETCH_GUIDE_DATA_ERROR,
     payload: {resp},
+  }
+);
+
+
+fetchGuideDataRequest = (resp : Object) => (
+  {
+    type: FETCH_GUIDE_DATA_REQUEST,
+    payload: {isLoading: true},
   }
 );

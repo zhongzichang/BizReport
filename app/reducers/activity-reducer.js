@@ -1,6 +1,7 @@
 import {
   FETCH_ACTIVITY_DATA_SUCCESS,
-  FETCH_ACTIVITY_DATA_ERROR
+  FETCH_ACTIVITY_DATA_ERROR,
+  FETCH_ACTIVITY_DATA_REQUEST
 } from '../constants/action-names';
 
 const initialState = {
@@ -26,6 +27,11 @@ const activityReducer = (state : Object = initialState, action : Object) => {
         isLoading: false,
         error: true,
         resp: action.payload.resp,
+      };
+    }
+    case FETCH_ACTIVITY_DATA_REQUEST: {
+      return {
+        isLoading: true,
       };
     }
     default: {

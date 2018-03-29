@@ -1,13 +1,14 @@
 import {
   FETCH_LOGOUT_DATA_SUCCESS,
-  FETCH_LOGOUT_DATA_ERROR
+  FETCH_LOGOUT_DATA_ERROR,
+  FETCH_LOGOUT_DATA_REQUEST
 } from '../constants/action-names';
 import {makeLogout} from '../services/make-logout';
 
 const initialState = {
   isLoading: false,
   error: false,
-  resp: {}
+  logoutResp: {}
 };
 
 export const getLogoutSelector = (state : Object) => ({...state.logout});
@@ -22,15 +23,20 @@ const logoutReducer = (state : Object = initialState, action : Object) => {
       return {
         isLoading: false,
         error: false,
-        resp: action.payload.resp,
+        logoutResp: action.payload.resp,
       };
     }
     case FETCH_LOGOUT_DATA_ERROR: {
       return {
         isLoading: false,
         error: true,
-        resp: action.payload.resp,
+        logoutResp: action.payload.resp,
       };
+    }
+    case FETCH_LOGOUT_DATA_REQUEST: {
+      return {
+        isLoading: true,
+      }
     }
     default: {
       return state;

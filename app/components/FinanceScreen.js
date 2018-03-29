@@ -10,13 +10,10 @@ class FinanceScreen extends React.Component {
     title: '财务'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchFinanceData(shopInfo.c1);
     }
   }
@@ -43,17 +40,14 @@ class FinanceScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const financeInfo = resp.data;
-    if( !financeInfo )
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
+
     const {income, expenses, netIncome,
-      budget, deficit, incomeBar} = financeInfo;
+      budget, deficit, incomeBar} = resp.data;
     if (!income || !expenses || !netIncome || !budget || !deficit || !incomeBar)
       return null;
 
@@ -67,7 +61,7 @@ class FinanceScreen extends React.Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={this.refreshing}
+            refreshing={isLoading}
             onRefresh={this._onRefresh.bind(this)}
           />
         }

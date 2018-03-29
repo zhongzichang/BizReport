@@ -10,13 +10,10 @@ class PerformanceScreen extends React.Component {
     title: '业绩'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchPerformanceData(shopInfo.c1);
     }
   }
@@ -44,15 +41,13 @@ class PerformanceScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const performanceInfo = resp.data;
-    if (performanceInfo == null)
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
+
+    const performanceInfo = resp.data;
 
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
@@ -63,7 +58,7 @@ class PerformanceScreen extends React.Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={this.refreshing}
+            refreshing={isLoading}
             onRefresh={this._onRefresh.bind(this)}
           />
         }>

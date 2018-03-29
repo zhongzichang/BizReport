@@ -10,13 +10,10 @@ class ActivityScreen extends React.Component {
     title: '活动'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchActivityData(shopInfo.c1);
     }
   }
@@ -44,18 +41,16 @@ class ActivityScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const activityInfo = resp.data;
-    if( !activityInfo )
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
-    const {summary, data, pie} = activityInfo;
+
+    const {summary, data, pie} = resp.data;
     if (!summary || !data || !pie)
       return null;
+
     const legend = pie.map(
       item => {
         return {
@@ -74,7 +69,7 @@ class ActivityScreen extends React.Component {
       <ScrollView
       refreshControl={
         <RefreshControl
-          refreshing={this.refreshing}
+          refreshing={isLoading}
           onRefresh={this._onRefresh.bind(this)}
         />
       }>

@@ -4,18 +4,18 @@ import {fetchDataRequest} from './fetch-data-request';
 import global from '../../services/global';
 import {FETCH_FINANCE_DATA_SUCCESS} from '../../constants/action-names';
 import {FETCH_FINANCE_DATA_ERROR} from '../../constants/action-names';
+import {FETCH_FINANCE_DATA_REQUEST} from '../../constants/action-names';
 
 
 export const fetchFinanceData = (shop_id) => (
   (dispatch : Function) => {
-    dispatch(fetchDataRequest());
+    dispatch(fetchFinanceDataRequest());
     getData(global.api_url_finance+"?shop_id="+shop_id)
       .then(
         (respJson) => {
           if(respJson.status == 0) {
             dispatch(fetchFinanceDataSuccess(respJson));
           } else {
-            //console.warn(respJson);
             dispatch(fetchFinanceDataError(respJson));
           }
         }
@@ -38,5 +38,12 @@ fetchFinanceDataError = (resp : Object) => (
   {
     type: FETCH_FINANCE_DATA_ERROR,
     payload: {resp},
+  }
+);
+
+fetchFinanceDataRequest = (resp : Object) => (
+  {
+    type: FETCH_FINANCE_DATA_REQUEST,
+    payload: {isLoading: true},
   }
 );

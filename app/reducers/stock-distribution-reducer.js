@@ -1,6 +1,7 @@
 import {
   FETCH_STOCK_DISTRIBUTION_DATA_SUCCESS,
-  FETCH_STOCK_DISTRIBUTION_DATA_ERROR
+  FETCH_STOCK_DISTRIBUTION_DATA_ERROR,
+  FETCH_STOCK_DISTRIBUTION_DATA_REQUEST
 } from '../constants/action-names';
 
 const initialState = {
@@ -28,6 +29,11 @@ const stockDistributionReducer = (state : Object = initialState, action : Object
         error: true,
         resp: action.payload.resp,
       };
+    }
+    case FETCH_STOCK_DISTRIBUTION_DATA_REQUEST: {
+      return {
+        isLoading: true,
+      }
     }
     default: {
       return state;

@@ -11,7 +11,7 @@ const mapStateToProps = (state : Object) => {
 }
 const mapDispatchToProps = (dispatch : Function) => (
   {
-    fetchShopsData: () => dispatch(fetchShopsData()),
+    fetchShopsData: (page,size,keyword) => dispatch(fetchShopsData(page,size,keyword)),
     fetchLogoutData: () => dispatch(fetchLogoutData()),
   }
 );

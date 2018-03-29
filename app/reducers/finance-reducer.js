@@ -1,6 +1,7 @@
 import {
   FETCH_FINANCE_DATA_SUCCESS,
-  FETCH_FINANCE_DATA_ERROR
+  FETCH_FINANCE_DATA_ERROR,
+  FETCH_FINANCE_DATA_REQUEST
 } from '../constants/action-names';
 
 const initialState = {
@@ -26,6 +27,11 @@ const financeReducer = (state : Object = initialState, action : Object) => {
         isLoading: false,
         error: true,
         resp: action.payload.resp,
+      };
+    }
+    case FETCH_FINANCE_DATA_REQUEST: {
+      return {
+        isLoading: true,
       };
     }
     default: {

@@ -8,13 +8,10 @@ class StockDistributionScreen extends React.Component {
     title: '库存分布'
   };
 
-  refreshing = false;
-
   _onRefresh() {
     const { navigate, state } = this.props.navigation;
     const shopInfo = state.params ? state.params.shopInfo : null;
     if( shopInfo && shopInfo.c1 ){
-      this.refreshing = true;
       this.props.fetchStockDistributionData(shopInfo.c1);
     }
   }
@@ -42,16 +39,13 @@ class StockDistributionScreen extends React.Component {
       return <Text>{resp.message} - {resp.status}</Text>;
     }
 
-    const stockDistributionInfo = resp.data;
-    if( !stockDistributionInfo )
+    if( !resp || !resp.data )
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>);
-    else {
-      this.refreshing = false;
-    }
-    const {sizeTypes, dataByColor, dataOfTotal} = stockDistributionInfo;
+
+    const {sizeTypes, dataByColor, dataOfTotal} = resp.data;
     if (!sizeTypes || !dataByColor || !dataOfTotal)
       return null;
 
@@ -67,7 +61,7 @@ class StockDistributionScreen extends React.Component {
         <ScrollView
           refreshControl={
             <RefreshControl
-              refreshing={this.refreshing}
+              refreshing={isLoading}
               onRefresh={this._onRefresh.bind(this)}
             />
           }
