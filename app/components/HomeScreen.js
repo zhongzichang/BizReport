@@ -34,17 +34,6 @@ class HomeScreen extends React.Component {
 
   _keyExtractor = (item, index) => index
 
-  _renderHeader = () => {
-    return (<SearchBar
-      placeholder="输入搜索关键字"
-      onChangeText={(text) => {
-        this.keyword=text;
-      }}
-      onClearText={()=>this.keyword=""}
-      onEndEditing={() => this._onRefresh()}
-      lightTheme round />);
-  }
-
   _renderFooter = () => {
     if(!this.props.isLoding) return null;
     return (
@@ -96,20 +85,27 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-
-      <List>
-        <FlatList
-          data={this.shopsInfo}
-          keyExtractor={this._keyExtractor}
-          renderItem={this._renderItem}
-          onEndReached={this._loadMore}
-          onEndThreashold={0}
-          refreshing={isLoading}
-          ListHeaderComponent={this._renderHeader}
-          ListFooterComponent={this._renderFooter}
-        />
-    </List>
-
+      <View>
+        <SearchBar
+          placeholder="输入搜索关键字"
+          onChangeText={(text) => {
+            this.keyword=text;
+          }}
+          onClearText={()=>this.keyword=""}
+          onEndEditing={() => this._onRefresh()}
+          lightTheme round />
+        <List containerStyle={{marginTop:0}}>
+          <FlatList
+            data={this.shopsInfo}
+            keyExtractor={this._keyExtractor}
+            renderItem={this._renderItem}
+            onEndReached={this._loadMore}
+            onEndThreashold={0}
+            refreshing={isLoading}
+            ListFooterComponent={this._renderFooter}
+          />
+      </List>
+    </View>
     );
   }
 }
