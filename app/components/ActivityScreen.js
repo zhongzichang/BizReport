@@ -137,7 +137,7 @@ class ActivityScreen extends React.Component {
               gutter={30}
               data={legend}
               orientation="vertical"
-              title="标题"
+              title="销售折扣占比"
               style={{title:{fontWeight:'bold'}}}
             />
           </View>
