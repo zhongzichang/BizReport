@@ -73,7 +73,7 @@ class RootScreen extends React.Component {
 
       return (
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" />
         </View>);
     }
   }

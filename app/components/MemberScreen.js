@@ -44,7 +44,7 @@ class MemberScreen extends React.Component {
     if( !resp || !resp.data )
       return (
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" />
         </View>);
 
     const {summary, data, liveness} = memberInfo;
